@@ -9,8 +9,9 @@ require_once('nav.php');
 
 
                <?php
-
-               use Models\Student as Student;
+             
+             use Models\Student as Student;
+             $studentList = array();
 
 
                $apiStudent = curl_init(API_URL . 'Student');
@@ -18,51 +19,60 @@ require_once('nav.php');
 
                curl_setopt($apiStudent, CURLOPT_HTTPHEADER, array('x-api-key: ' . API_KEY));
                curl_setopt($apiStudent, CURLOPT_RETURNTRANSFER, true);
-               // Envio de la petición.
+               // Envio de la peticiÃ³n.
                $response = curl_exec($apiStudent);
+               $this->studentList = array();
 
-                var_dump($response);
+               //die(var_dump($response));
 
-               $jsonContent = json_decode($response, true);
-               // var_dump($arrayToDecode[0]['active']);
+               
+               $arrayToDecode = ($response) ? json_decode($response, true) : array();
+         
+               
 
-
-
-               $options = array(
-                    'http' => array(
-                         'method' => "GET",
-                         'header' => "x-api-key: 4f3bceed-50ba-4461-a910-518598664c08"
-                    )
-               );
-
-               $context = stream_context_create($options);
-
-               $response = file_get_contents('https://utn-students-api.herokuapp.com/api/Student', false, $context);
-
-
-               $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
-
-               foreach ($arrayToDecode as $valuesArray) {
+                foreach($arrayToDecode as $valuesArray) {
                     $student = new Student(
-                         $valuesArray["studentId"],
-                         $valuesArray["careerId"],
-                         $valuesArray["firstName"],
-                         $valuesArray["lastName"],
-                         $valuesArray["dni"],
-                         $valuesArray["fileNumber"],
-                         $valuesArray["gender"],
-                         $valuesArray["birthDate"],
-                         $valuesArray["email"],
-                         $valuesArray["phoneNumber"],
-                         $valuesArray["active"]
-                    );
-
-                    array_push($studentList, $student);
+                    $valuesArray["studentId"], 
+                    $valuesArray["careerId"], 
+                    $valuesArray["firstName"], 
+                    $valuesArray["lastName"], 
+                    $valuesArray["dni"], 
+                    $valuesArray["fileNumber"], 
+                    $valuesArray["gender"], 
+                    $valuesArray["birthDate"], 
+                    $valuesArray["email"], 
+                    $valuesArray["phoneNumber"], 
+                    $valuesArray["active"]);
+                    
+                    array_push($this->studentList, $student);
                }
-             //  var_dump($studentList);
+
+                   // var_dump($this->studentList);
+
+               $arrayToEncode = array();
+    
+        foreach($this->studentList as $student){
+          $valuesArray["studentId"] = $student->getStudentId();
+          $valuesArray["careerId"] = $student->getCareerId();
+          $valuesArray["firstName"] = $student->getFirstName();
+          $valuesArray["lastName"] = $student->getLastName();
+          $valuesArray["dni"] = $student->getDni();
+          $valuesArray["fileNumber"] = $student->getFileNumber();
+          $valuesArray["gender"] = $student->getGender();
+          $valuesArray["birthDate"] = $student->getBirthDate();
+          $valuesArray["email"] = $student->getEmail();
+          $valuesArray["phoneNumber"] = $student->getPhoneNumber();
+          $valuesArray["active"] = $student->getActive();
+    
+          array_push($arrayToEncode, $valuesArray);
+          }
+          $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
+        file_put_contents('Data/students.json', $jsonContent);
+               //var_dump($arrayToEncode);
+             
                ?>
 
 
           </div>
      </section>
-</main>;
+</main>
