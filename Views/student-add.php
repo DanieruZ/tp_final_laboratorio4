@@ -27,7 +27,7 @@
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label for="dni">DNI</label>
-							<input type="text" name="dni" class="form-control">
+							<input type="number" name="dni" class="form-control">
 						</div>
 					</div>
 					<div class="col-lg-4">
@@ -45,7 +45,7 @@
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label for="birthDate">Birthdate</label>
-							<input type="text" name="birthDate" class="form-control">
+							<input type="date" name="birthDate" class="form-control">
 						</div>
 					</div>
 					<div class="col-lg-4">
@@ -57,7 +57,7 @@
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label for="phoneNumber">Phone Number</label>
-							<input type="text" name="phoneNumber" class="form-control">
+							<input type="number" name="phoneNumber" class="form-control">
 						</div>
 					</div>
 				</div>
