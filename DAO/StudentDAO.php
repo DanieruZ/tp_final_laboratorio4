@@ -20,6 +20,18 @@
         return $this->studentList;
       }
     
+      public function getStudentByEmail($email) {
+        $this->retrieveData();
+        $targetStudent = null;
+    
+        foreach($this->studentList as $student) {
+          if($student->getEmail() == $email) {
+            $targetStudent = $student;
+          }
+        }
+        return $targetStudent;
+      }
+
       private function saveData() {
         $arrayToEncode = array();
     
@@ -42,6 +54,7 @@
         $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
         file_put_contents('Data/students.json', $jsonContent);
       }
+
     
       private function retrieveData() {
         $this->studentList = array();
