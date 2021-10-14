@@ -4,8 +4,14 @@
 	<section id="listado" class="mb-5">
 		<div class="container">
 			<h2 class="mb-4">Agregar alumno</h2>
-			<form action="<?php echo FRONT_ROOT ?>student/add" method="post" class="bg-light-alpha p-5">
-				<div class="row">
+			<form action="<?php echo FRONT_ROOT ?>Student/ShowAddView" method="post" class="bg-light-alpha p-5">
+			<div class="row">
+					<div class="col-lg-4">
+						<div class="form-group">
+							<label for="studentId">Student ID</label>
+							<input type="text" name="studentId" class="form-control">
+						</div>
+					</div>
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label for="careerId">Career ID</label>
@@ -58,6 +64,12 @@
 						<div class="form-group">
 							<label for="phoneNumber">Phone Number</label>
 							<input type="number" name="phoneNumber" class="form-control">
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="form-group">
+							<label for="active">Active</label>
+							<input type="text" name="active" class="form-control">
 						</div>
 					</div>
 				</div>
