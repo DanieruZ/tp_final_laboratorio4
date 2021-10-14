@@ -36,16 +36,13 @@
 						
 <?php
 $studentRepo = new StudentDAO();
-//$studentList = array();
+
 $studentList =$studentRepo->getAllStudent();
 $email = "wlorant1@sbwire.com";
 
 
 $student = $studentRepo->getStudentByEmail($email);
-var_dump($student);
 
-
-//var_dump($studentList);
 
 ?>
 						
