@@ -50,8 +50,8 @@
 
         public function ShowUpdateView($companyId, $companyName, $email,$phoneNumber,$address,$city,$country, $totalEmployees, $companyInfo,$active){
             $company = new Company($companyId, $companyName, $email,$phoneNumber,$address,$city,$country, $totalEmployees, $companyInfo,$active);
-            $title = "Modificar $companyName";
-            require_once (VIEWS_PATH."header.php");
+            $title = "Update $companyName";
+           // require_once (VIEWS_PATH."header.php");
             require_once(VIEWS_PATH."company-update.php");
         }
             
