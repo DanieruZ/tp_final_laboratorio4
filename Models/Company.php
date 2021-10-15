@@ -12,6 +12,7 @@ class Company {
   private $city;
   private $country;
   private $totalEmployees;
+  private $companyInfo;
   private $active;
 
   public function __construct(
@@ -23,6 +24,7 @@ class Company {
     $city,
     $country,
     $totalEmployees,
+    $companyInfo,
     $active) {
     
     $this->companyId = $companyId;  
@@ -33,6 +35,7 @@ class Company {
     $this->city = $city;  
     $this->country = $country;  
     $this->totalEmployees = $totalEmployees;  
+    $this->companyInfo = $companyInfo;  
     $this->active = $active;  
   }
 
@@ -106,6 +109,15 @@ class Company {
   public function setTotalEmployees($totalEmployees) {
     $this->totalEmployees = $totalEmployees;
     return $this;
+  }
+
+  public function getCompanyInfo() {
+    return $this->companyInfo;
+  }
+
+  public function setCompanyInfo($companyInfo) {
+      $this->companyInfo = $companyInfo;
+      return $this;
   }
 
   public function getActive() {
