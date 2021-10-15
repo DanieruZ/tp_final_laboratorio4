@@ -42,6 +42,25 @@
         return $targetStudent;
       }
 
+      public function deleteStudentById($studentId) {
+        var_dump($studentId);
+        $this->retrieveData();
+        $newList = array();
+        
+       
+        foreach($this->studentList as $student) {
+          if($student->getStudentId() != $studentId) {
+            array_push($newList, $student);
+            
+          }
+        }
+       
+    
+        $this->studentList = $newList;
+        $this->saveData();
+      }
+      
+
       private function saveData() {
         $arrayToEncode = array();
     
