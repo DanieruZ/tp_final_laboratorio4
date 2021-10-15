@@ -1,5 +1,5 @@
 <?php
-    require_once('nav.php');
+ require_once('nav.php');
 ?>
 <main class="py-5">
 	<section id="listado" class="mb-5">
@@ -21,7 +21,7 @@
 					<th>Active</th>
 				</thead>
 				<tbody>
-					<form action="Process/student-remove.php" method="post">
+					<form action="" method="post">
 						<?php
 						if (isset($studentList)) {
 							foreach ($studentList as $student) {
