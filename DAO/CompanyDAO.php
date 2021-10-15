@@ -9,11 +9,21 @@ class CompanyDAO implements ICompanyDAO {
 
   private $companyList = array();
 
-  public function addCompany(Company $company) {
+  public function addCompany(Company $newCompany) {
     $this->retrieveData();
-    array_push($this->companyList, $company);
+    $newCompany->setCompanyId($this->getNextId()); 
+    array_push($this->companyList, $newCompany);
     $this->saveData();
   }
+
+  public function getNextId() {
+    $id = 0;
+
+    foreach($this->companyList as $company) {
+        $id = ($company->getCompanyId() > $id) ? $company->getCompanyId() : $id;            
+    }
+    return $id + 1;
+}
 
   public function getAllCompany() {
     $this->retrieveData();
