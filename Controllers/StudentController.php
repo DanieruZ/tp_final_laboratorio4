@@ -40,5 +40,12 @@
 
             $this->ShowAddView();
         }
+
+        public function DeleteStudent($studentId){
+           
+           $this->studentDAO->deleteStudentById($studentId);
+            $this->ShowListView();
+
+        }
     }
 ?>
