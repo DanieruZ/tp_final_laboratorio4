@@ -17,7 +17,7 @@ class Student {
   private $active;
 
   public function __construct(
-    $studentId, 
+    
     $careerId, 
     $firstName, 
     $lastName, 
@@ -29,7 +29,7 @@ class Student {
     $phoneNumber, 
     $active) {
 
-    $this->studentId = $studentId;
+    //$this->studentId = $studentId;
     $this->careerId = $careerId;
     $this->firstName = $firstName;
     $this->lastName = $lastName;
