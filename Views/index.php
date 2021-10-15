@@ -103,9 +103,4 @@ require_once('nav.php');
  include('footer.php') 
 ?>
 
-
-          </div>
-     </section>
-
-
 </main>
