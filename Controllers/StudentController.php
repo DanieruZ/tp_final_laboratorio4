@@ -15,7 +15,7 @@
 
         public function ShowAddView()
         {
-            require_once(VIEWS_PATH."student-add.php");
+            require_once(VIEWS_PATH."welcome.php");
         }
 
         public function ShowListView()
@@ -46,6 +46,9 @@
            $this->studentDAO->deleteStudentById($studentId);
             $this->ShowListView();
 
+        }
+        public function Index(){
+            $this->ShowAddView();
         }
     }
 ?>
