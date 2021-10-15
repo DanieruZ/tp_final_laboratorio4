@@ -87,7 +87,7 @@
                <header class="text-center">
                     <h2>Welcome</h2>
                </header>
-               <form action="Process/login.php" method="post" class="login-form bg-dark-alpha p-5 text-white">
+               <form action="Login/Login" method="post" class="login-form bg-dark-alpha p-5 text-white">
                     <div class="form-group">
                          <label for="email"></label>
                          <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter your Email" required>
