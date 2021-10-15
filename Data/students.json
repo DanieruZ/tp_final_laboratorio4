@@ -26,6 +26,19 @@
         "active": true
     },
     {
+        "studentId": 3,
+        "careerId": 2,
+        "firstName": "Alanson",
+        "lastName": "Seemmonds",
+        "dni": "06-684-0100",
+        "fileNumber": "89-621-0940",
+        "gender": "Agender",
+        "birthDate": "2021-07-03T00:00:00",
+        "email": "aseemmonds2@upenn.edu",
+        "phoneNumber": "961-404-8720",
+        "active": true
+    },
+    {
         "studentId": 4,
         "careerId": 5,
         "firstName": "Elvin",
