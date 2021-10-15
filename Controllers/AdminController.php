@@ -13,7 +13,9 @@
         }
         public function ShowAdminMainView(){
             $title= "Admin";
-            require_once(VIEWS_PATH."admin-main.php");
+            require_once(VIEWS_PATH."nav-admin.php");
+            //require_once(VIEWS_PATH."admin-main.php");
+
         }
 
        
