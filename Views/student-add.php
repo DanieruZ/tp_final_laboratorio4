@@ -9,14 +9,7 @@ require_once('nav-admin.php');
 	<section id="listado" class="mb-5">
 		<div class="container">
 			<h2 class="mb-4">Add Student</h2>
-			<form action="<?php echo FRONT_ROOT ?>Student/ShowAddView" method="post" class="bg-light-alpha p-5">
-			<div class="row">
-					<div class="col-lg-4">
-						<div class="form-group">
-							<label for="studentId">Student ID</label>
-							<input type="text" name="studentId" class="form-control">
-						</div>
-					</div>
+			<form action="<?php echo FRONT_ROOT ?>Student/AddStudent" method="post" class="bg-light-alpha p-5">
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label for="careerId">Career ID</label>
@@ -78,7 +71,8 @@ require_once('nav-admin.php');
 						</div>
 					</div>
 				</div>
-				<button type="submit" name="button" class="btn btn-dark ml-auto d-block">Agregar</button>
+				<button type="submit" name="" class="btn btn-dark ml-auto d-block">Agregar</button>
+				
 			</form>
 		</div>
 	</section>
