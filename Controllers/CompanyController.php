@@ -39,7 +39,8 @@
         {
             $title = "List of company";
          //   $student = $_SESSION["student"];
-            $companyList = $this->StudentDAO->getAllStudent();
+            $studentList = $this->StudentDAO->getAllStudent();
+
             require_once(VIEWS_PATH."company-list-student.php");
         }
 
@@ -71,6 +72,8 @@
             $this->CompanyDAO->deleteCompanyById($companyId);
             $this->ShowListViewAdmin();
         }
+
+        
 
         public function UpdateCompany($companyId, $companyName, $email,$phoneNumber,$address,$city,$country, $totalEmployees, $companyInfo,$active){
             $this->CompanyDAO->updateCompany($companyId, $companyName, $email,$phoneNumber,$address,$city,$country, $totalEmployees, $companyInfo,$active);
