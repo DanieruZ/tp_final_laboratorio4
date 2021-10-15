@@ -32,7 +32,7 @@
         {
             $title = "List of company";
             $companyList = $this->CompanyDAO->getAllCompany();
-            require_once(VIEWS_PATH."company-list-admin.php");
+            require_once(VIEWS_PATH."student-list-company.php");
         }
 
         public function ShowListViewStudent()
