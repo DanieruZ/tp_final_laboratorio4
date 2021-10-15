@@ -2,16 +2,22 @@
     namespace Controllers;
 
     use DAO\CompanyDAO as CompanyDAO;
+    use DAO\StudentDAO as StudentDAO;
     use Models\Company as Company;
+    use Models\Student as Student;
 
     class CompanyController
     {
         private $CompanyDAO;
+        private $StudentDAO;
 
         public function __construct()
         {
             $this->CompanyDAO = new CompanyDAO();
+            $this->StudentDAO = new StudentDAO();
         }
+
+        
 
 
 
@@ -32,8 +38,8 @@
         public function ShowListViewStudent()
         {
             $title = "List of company";
-            $student = $_SESSION["student"];
-            $companyList = $this->CompanyDAO->getAllCompany();
+         //   $student = $_SESSION["student"];
+            $companyList = $this->StudentDAO->getAllStudent();
             require_once(VIEWS_PATH."company-list-student.php");
         }
 
@@ -49,11 +55,13 @@
             require_once(VIEWS_PATH."company-update.php");
         }
             
-        public function AddCompany($companyId, $companyName, $email, $phoneNumber,$address,$city,$country,$totalEmployees,$companyInfo,$active)
+        public function AddCompany($companyName, $email, $phoneNumber,$address,$city,$country,$totalEmployees,$companyInfo,$active)
         {   
-
+            
+            //die(var_dump($companyId));
+            $companyId = $this->CompanyDAO->getNextId();// generate sequential increment iD
             $company = new Company($companyId,$companyName,$email, $phoneNumber,$address,$city,$country,$totalEmployees,$companyInfo,$active);
-            $this->CompanyDAO->addCompany($company);//metodo de DAO
+            $this->CompanyDAO->addCompany($company);//metodo de DAO            
             echo "<script> if(confirm('company successfully charged with success'));";
             echo "</script>";
             $this->ShowAddView();
