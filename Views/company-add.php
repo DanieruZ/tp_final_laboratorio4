@@ -1,5 +1,5 @@
 <?php
-
+require_once "nav-admin.php";
 ?>
 <head>
      <title>New Company</title>
@@ -8,18 +8,9 @@
      <section id="listado" class="mb-5">
           <div class="container">
                <h2 class="mb-4">Add Company</h2>
-               <form action="<?php echo FRONT_ROOT ?>Company/ShowAddView" method="post" class="bg-light-alpha p-5">
+               <form action="<?php echo FRONT_ROOT ?>Company/AddCompany" method="post" class="bg-light-alpha p-5">
                     <div class="col">                         
-                         <div class="col-lg-4">
-                              
-                         </div>
-                         <div class="col-lg-4">
-                              <div class="form-group">
-                                   <label for="CompanyId">CompanyId</label>
-                                   <input type="number" name="companyId" value="" class="form-control" Required>
-                              </div>
-                         </div>
-                         <div class="col-lg-4">
+                          <div class="col-lg-4">
                               <div class="form-group">
                                    <label for="companyName">companyName</label>
                                    <input type="text" name="companyName" value="" class="form-control" Required>
