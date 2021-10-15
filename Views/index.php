@@ -81,6 +81,7 @@ require_once('nav.php');
 
 ?>
 
+
      <main class="d-flex align-items-center justify-content-center height-100">
           <div class="content">
                <header class="text-center">
