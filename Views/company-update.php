@@ -8,10 +8,10 @@
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container">
-            <h2 class="mb-4">Update <?php echo $company->getCompanyName(); ?></h2>
+            <h2 class="mb-4">update <?php echo $company->getCompanyName(); ?></h2>
             <form action="<?php echo FRONT_ROOT ?>Company/UpdateCompany" method="post" class="bg-light-alpha p-5">
                 <div class="col">
-                    <input type="hidden" name="update" value="true">
+                    <input type="hidden" name="" value="true">
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label for="companyId">companyId</label>
@@ -43,7 +43,7 @@
                     
                 </div>
                 <button type="submit" class="btn btn-dark ml-auto d-block">Add</button>
-                <a href="<?php echo FRONT_ROOT ?>Admin/ShowListViewAdmin">Back to Main</a>
+                <a href="<?php echo FRONT_ROOT ?>Company/ShowListViewAdmin">Back to Main</a>
             </form>
         </div>
     </section>
