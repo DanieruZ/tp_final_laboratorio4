@@ -58,7 +58,7 @@ class CompanyDAO implements ICompanyDAO {
     $this->saveData();
   }
 
-  public function updateCompany($companyId, $companyName, $email, $phoneNumber, $address, $city, $country, $totalEmployees, $active) {
+  public function updateCompany($companyId, $companyName, $email, $phoneNumber, $address, $city, $country, $totalEmployees, $companyInfo, $active) {
     $this->retrieveData();
     
     foreach($this->companyList as $company) {
@@ -73,7 +73,9 @@ class CompanyDAO implements ICompanyDAO {
           $city,
           $country,
           $totalEmployees,
-          $active);
+          $companyInfo,
+          $active
+        );
 
         array_push($this->companyList, $newCompany);
       }
@@ -98,6 +100,7 @@ class CompanyDAO implements ICompanyDAO {
           $valuesArray["city"],
           $valuesArray["country"],
           $valuesArray["totalEmployees"],
+          $valuesArray["companyInfo"],
           $valuesArray["active"]
         );
 
@@ -118,6 +121,7 @@ class CompanyDAO implements ICompanyDAO {
       $valuesArray["city"] = $company->getCity();
       $valuesArray["country"] = $company->getCountry();
       $valuesArray["totalEmployees"] = $company->getTotalEmployees();
+      $valuesArray["companyInfo"] = $company->getCompanyInfo();
       $valuesArray["active"] = $company->getActive();
 
       array_push($arrayToEncode, $valuesArray);

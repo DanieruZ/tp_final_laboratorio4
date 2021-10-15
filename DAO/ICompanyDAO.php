@@ -20,6 +20,7 @@ interface ICompanyDAO {
     $city, 
     $country, 
     $totalEmployees, 
+    $companyInfo,
     $active
   );
   
