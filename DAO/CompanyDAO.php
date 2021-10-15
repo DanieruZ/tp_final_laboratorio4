@@ -73,7 +73,7 @@ class CompanyDAO implements ICompanyDAO {
     $this->retrieveData();
     
     foreach($this->companyList as $company) {
-      if($company->getCompanyId == $companyId) {
+      if($company->getCompanyId() == $companyId) {
         $this->deleteCompanyById($companyId);
         $newCompany = new Company(
           $companyId,
