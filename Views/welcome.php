@@ -12,9 +12,7 @@
 <main class="py-5">
 	<section id="listado" class="mb-5">
 		<div class="container">
-			<h2 class="mb-4">STUDENT'S LIST</h2>
-
-			<table class="table bg-light">
+				<table class="table bg-light">
 				<thead class="bg-dark text-white">
                     <tr>
 					<th>Student ID</th>
@@ -32,7 +30,7 @@
 
 				</thead>
 				<tbody>
-					<form action="Process/student-remove.php" method="post">
+	
 						
 <?php
 $studentRepo = new StudentDAO();
@@ -58,9 +56,7 @@ $student = $studentRepo->getStudentByEmail($email);
 									<td><?php echo $student->getEmail(); ?></td>
 									<td><?php echo $student->getPhoneNumber(); ?></td>
 									<td><?php echo $student->getActive(); ?></td>
-									<td>
-										<button type="submit" name="btnRemove" class="btn btn-danger" value="<?php echo $student->getDni(); ?>">Eliminar</button>
-									</td>
+								
 								</tr>
 						
 						
