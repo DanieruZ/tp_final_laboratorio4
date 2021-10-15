@@ -25,10 +25,17 @@
                               {
                                    ?>
                                         <tr>
-                                             <td><?php echo $company->getCompanyId(); ?></td>
-                                                
+                                             <td><?php echo $company->getCompanyId(); ?></td>                                                
+                                             <td><?php echo $company->getCompanyName(); ?></td>
+                                             <td><?php echo $company->getEmail(); ?></td>
+                                             <td><?php echo $company->getPhoneNumber(); ?></td>                                                
+                                             <td><?php echo $company->getAddress(); ?></td>
+                                             <td><?php echo $company->getCity(); ?></td>
+                                             <td><?php echo $company->getCountry(); ?></td>                                                
                                              <td><?php echo $company->getTotalEmployees(); ?></td>
                                              <td><?php echo $company->getCompanyInfo(); ?></td>
+                                             <td><?php echo $company->getActive(); ?></td>                                                
+
                                              <td>
                                                 
                                              </td>
