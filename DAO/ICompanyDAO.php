@@ -11,7 +11,18 @@ interface ICompanyDAO {
   function getCompanyById($companyId);
   function getCompanyByName($companyName);
   function deleteCompanyById($companyId);
-  function updateCompany();
+  function updateCompany(
+    $companyId, 
+    $companyName, 
+    $email, 
+    $phoneNumber, 
+    $address, 
+    $city, 
+    $country, 
+    $totalEmployees, 
+    $active
+  );
+  
 }
 
 ?> 

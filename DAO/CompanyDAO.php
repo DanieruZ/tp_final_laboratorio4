@@ -58,9 +58,27 @@ class CompanyDAO implements ICompanyDAO {
     $this->saveData();
   }
 
-  function updateCompany() {
+  public function updateCompany($companyId, $companyName, $email, $phoneNumber, $address, $city, $country, $totalEmployees, $active) {
     $this->retrieveData();
     
+    foreach($this->companyList as $company) {
+      if($company->getCompanyId == $companyId) {
+        $this->deleteCompanyById($companyId);
+        $newCompany = new Company(
+          $companyId,
+          $companyName,
+          $email,
+          $phoneNumber,
+          $address,
+          $city,
+          $country,
+          $totalEmployees,
+          $active);
+
+        array_push($this->companyList, $newCompany);
+      }
+    }
+    $this->saveData();
   }
 
   private function retrieveData() {
