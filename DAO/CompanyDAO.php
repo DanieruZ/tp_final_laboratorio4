@@ -57,11 +57,13 @@ class CompanyDAO implements ICompanyDAO {
     $this->retrieveData();
     $newList = array();
 
+   
     foreach($this->companyList as $company) {
-      if($companyId->getCompanyId() != $companyId) {
+      if($company->getCompanyId() != $companyId) {
         array_push($newList, $company);
       }
     }
+   
 
     $this->companyList = $newList;
     $this->saveData();
