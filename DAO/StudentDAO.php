@@ -43,7 +43,7 @@
       }
 
       public function deleteStudentById($studentId) {
-        var_dump($studentId);
+        
         $this->retrieveData();
         $newList = array();
         
