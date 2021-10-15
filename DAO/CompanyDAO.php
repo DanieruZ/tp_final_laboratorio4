@@ -18,7 +18,6 @@ class CompanyDAO implements ICompanyDAO {
 
   public function getNextId() {
     $id = 0;
-
     foreach($this->companyList as $company) {
         $id = ($company->getCompanyId() > $id) ? $company->getCompanyId() : $id;            
     }
@@ -124,7 +123,7 @@ class CompanyDAO implements ICompanyDAO {
 
     foreach ($this->companyList as $company) {
       $valuesArray["companyId"] = $company->getCompanyId();
-      $valuesArray["companyName"] = $company->getCompanyId();
+      $valuesArray["companyName"] = $company->getCompanyName();
       $valuesArray["email"] = $company->getEmail();
       $valuesArray["phoneNumber"] = $company->getPhoneNumber();
       $valuesArray["address"] = $company->getAddress();
