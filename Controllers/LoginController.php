@@ -11,7 +11,7 @@
             $studentRepo = new StudentDAO();
             $studentList = $studentRepo->getAllStudent();
             if($email == "admin@myapp.com"){
-                var_dump($email);
+                //var_dump($email);
                 header("location:".FRONT_ROOT."Admin");
             }
             $student = $studentRepo->getStudentByEmail($email);
@@ -25,7 +25,7 @@
             }             
         }
     public function Logout(){
-        header("location: ../index.php");
+        header("location: ../login.php");
     }  
 }
 
