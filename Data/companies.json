@@ -1,0 +1,26 @@
+[
+    {
+        "companyId": 1,
+        "companyName": "Globant",
+        "email": "globant@yahoo.com",
+        "phoneNumber": "2234511777",
+        "address": "Av. Colon 1102",
+        "city": "Mar del Plata",
+        "country": "Argentina",
+        "totalEmployees": "112",
+        "companyInfo": " La oficina esta ubicada en el antiguo Museo del Mar",
+        "active": "1"
+    },
+    {
+        "companyId": 2,
+        "companyName": "Accenture",
+        "email": "accenture@yahoo.com",
+        "phoneNumber": "2234658765",
+        "address": "Av. Independencia 4250",
+        "city": "Mar del Plata",
+        "country": "Argentina",
+        "totalEmployees": "79",
+        "companyInfo": "Lideres en desarrollo web",
+        "active": "1"
+    }
+]
