@@ -32,7 +32,7 @@
         {
             $title = "List of company";
             $companyList = $this->CompanyDAO->getAllCompany();
-            require_once(VIEWS_PATH."student-list-company.php");
+            require_once(VIEWS_PATH."company-list-admin.php");
         }
 
         public function ShowListViewStudent()
@@ -58,11 +58,12 @@
             
         public function AddCompany($companyName, $email, $phoneNumber,$address,$city,$country,$totalEmployees,$companyInfo,$active)
         {   
-            
-            //die(var_dump($companyId));
+
             $companyId = $this->CompanyDAO->getNextId();// generate sequential increment iD
             $company = new Company($companyId,$companyName,$email, $phoneNumber,$address,$city,$country,$totalEmployees,$companyInfo,$active);
-            $this->CompanyDAO->addCompany($company);//metodo de DAO            
+            $this->CompanyDAO->addCompany($company);//metodo de DAO    
+            
+            //Mostrar en capa de presentacion.
             echo "<script> if(confirm('company successfully charged with success'));";
             echo "</script>";
             $this->ShowAddView();
