@@ -15,7 +15,7 @@
 
         public function ShowAddView()
         {
-            require_once(VIEWS_PATH."welcome.php");
+            require_once(VIEWS_PATH."student-add.php");
         }
 
         public function ShowListView()
