@@ -3,10 +3,10 @@
 ?>
 <main class="py-5">
    <section id="listado" class="mb-5">
-	   <div class="container">
+	   <div class="container-fluid">
 		   <h2 class="mb-4">STUDENT'S LIST</h2>
 
-		   <table class="table bg-light">
+		   <table class="table table-striped bg-light">
 			   <thead class="bg-dark text-white">
 				   <th>Student ID</th>
 				   <th>Career ID</th>
