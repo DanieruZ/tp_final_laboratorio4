@@ -86,6 +86,7 @@
           <div class="content">
                <header class="text-center">
                     <h2>Welcome</h2>
+                    <h2>Prueba merge</h2>
                </header>
                <form action="Login/Login" method="post" class="login-form bg-dark-alpha p-5 text-white">
                     <div class="form-group">
