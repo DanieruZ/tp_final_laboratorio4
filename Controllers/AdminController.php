@@ -1,29 +1,26 @@
 <?php
-    namespace Controllers;
 
-    use DAO\AdminDAO as AdminDAO;
+namespace Controllers;
 
-    class AdminController
-    {
-        private $adminDAO;
+use DAO\AdminDAO as AdminDAO;
 
-        public function __construct()
-        {
-            $this->adminDAO = new AdminDAO();
-        }
-        public function ShowAdminMainView(){
-            $title= "Admin";
-            require_once(VIEWS_PATH."nav-admin.php");
-            //require_once(VIEWS_PATH."admin-main.php");
-
-        }
-
-       
+class AdminController {
         
-        public function Index(){
-            $this->ShowAdminMainView();
-        }
+  private $adminDAO;
 
-    }
+  public function __construct() {
+    $this->adminDAO = new AdminDAO();
+  }
+  
+  public function ShowAdminWelcomeView(){
+    require_once(VIEWS_PATH."nav-admin.php");
+    require_once(VIEWS_PATH."admin-welcome.php");
+  }
+
+  public function Index(){
+    $this->ShowAdminWelcomeView();
+  }
+
+}
 
 ?>
