@@ -46,7 +46,9 @@ class CompanyController {
     $this->ShowAdminListView();
   }
             
-  public function AddCompany($company) {   
+  public function AddCompany($companyName, $email,$phoneNumber,$address,$city,$country, $totalEmployees, $companyInfo,$active) {  
+    $companyId = $this->CompanyDAO->getNextId(); //genera el siguiente ID
+    $company = new Company($companyId, $companyName, $email,$phoneNumber,$address,$city,$country, $totalEmployees, $companyInfo,$active);   
     $this->CompanyDAO->addCompany($company);   
     $this->ShowAddView();
   }
