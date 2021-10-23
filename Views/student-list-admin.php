@@ -1,7 +1,7 @@
 <main class="py-5">
    <section id="listado" class="mb-5">
 	   <div class="container-fluid">
-		   <h2 class="mb-4">Student's List</h2>
+		   <h2 class="mb-4">STUDENT'S LIST</h2>
 
 		   <table class="table bg-light">
 			   <thead class="bg-dark text-white">
@@ -39,6 +39,9 @@
 								   <td><?php echo $student->getPhoneNumber(); ?></td>
 								   <td><?php echo $student->getActive(); ?></td>
 								   <td>
+								   <button type="submit" name="btnRemove"  class="btn btn-danger">
+                                        <a href= "<?php echo FRONT_ROOT ?>Student/DeleteStudent?$id=<?php echo $student->getStudentId(); ?>">Delete</a>
+                                    </button>
 								   </td>
 							   </tr>
 					   <?php

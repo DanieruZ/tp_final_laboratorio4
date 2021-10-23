@@ -4,16 +4,22 @@ namespace Views;
 
 use Models\Student as Student;
 use DAO\StudentDAO as StudentDAO;
-use Config\Autoload as Autoload;
 
+/**
+ * ! esto no funca
+ * * aca datos del estudiante & estado academico 
+ * * el model AcademicStatus se tiene que crear en Models
+ */
 
 ?>
 <main class="py-5">
     <section id="listado" class="mb-5">
-        <div class="container">
+        <div class="container-fluid">
             <title><?php echo $student->getFirstName() . " " . $student->getLastName(); ?></title>
+            
             </head>
             <body>
+            <h1>Aca los datos de alumno & su estado academico</h1>
                 <h1><?php echo $student->getFirstName() . " " . $student->getLastName(); ?></h1>
             </body>
             <table class="table bg-light">

@@ -1,7 +1,3 @@
-<?php
-//require_once('nav.php');
-
-?>
 <main class="py-5">
      <section id="listado" class="mb-5">
           <div class="container">
@@ -88,14 +84,14 @@
                     <h2>Welcome</h2>
                     <h2>Prueba merge</h2>
                </header>
-               <form action="Login/Login" method="post" class="login-form bg-dark-alpha p-5 text-white">
+               <form action="Login/Login" method="post" class="login-form bg-light p-5 text-white">
                     <div class="form-group">
                          <label for="email"></label>
                          <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter your Email" required>
                     </div>
                   
                     
-                    <button class="btn btn-dark btn-block btn-lg" type="submit">Start Session</button>
+                    <button class="btn btn-dark btn-block btn-lg" type="submit">Session Start</button>
                </form>
           </div>
      </main>
