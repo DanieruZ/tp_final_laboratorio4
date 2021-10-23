@@ -12,13 +12,15 @@ class AdminController {
     $this->adminDAO = new AdminDAO();
   }
   
-  public function ShowAdminWelcomeView(){
+  public function ShowAdminWelcomeView($admin){
     require_once(VIEWS_PATH."nav-admin.php");
     require_once(VIEWS_PATH."admin-welcome.php");
   }
 
   public function Index(){
-    $this->ShowAdminWelcomeView();
+    $admin = $_SESSION["admin"];
+    $title = $admin->getFirstName();   
+    $this->ShowAdminWelcomeView($admin);
   }
 
 }
