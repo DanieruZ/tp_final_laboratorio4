@@ -43,7 +43,7 @@
                     
                 </div>
                 <button type="submit" class="btn btn-dark ml-auto d-block">Add</button>
-                <a href="<?php echo FRONT_ROOT ?>Company/ShowListViewAdmin">Back to Main</a>
+                <a href="<?php echo FRONT_ROOT ?>Company/ShowAdminListView">Back to Main</a>
             </form>
         </div>
     </section>
