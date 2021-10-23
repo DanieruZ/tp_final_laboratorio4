@@ -1,12 +1,9 @@
-<?php
-require_once "nav-admin.php";
-?>
 <main class="py-5">
      <section id="listado" class="mb-5">
-          <div class="container">
-               <h2 class="mb-4">Listado de Empresas</h2>
-               <table class="table bg-light-alpha">
-                    <thead>
+          <div class="container-fluid">
+               <h2 class="mb-4">Company's List</h2>
+               <table class="table bg-light">
+               <thead class="bg-dark text-white">
                          <th>companyId</th>
                          <th>companyName</th>
                          <th>email</th>
