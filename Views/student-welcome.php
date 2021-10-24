@@ -1,6 +1,6 @@
 <?php
-
 namespace Views;
+
 
 use Models\Student as Student;
 use DAO\StudentDAO as StudentDAO;
@@ -11,15 +11,26 @@ use DAO\StudentDAO as StudentDAO;
  * * el model AcademicStatus se tiene que crear en Models
  */
 
+$studentRepo = new StudentDAO();
+
+$studentList = $studentRepo->getAllStudent();
+//$email = "wlorant1@sbwire.com";
+
+//$student = $studentRepo->getStudentByEmail($email);
+
+
+
+
 ?>
+
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container-fluid">
             <title><?php echo $student->getFirstName() . " " . $student->getLastName(); ?></title>
-            
+
             </head>
-            <body>
-            <h1>Aca los datos de alumno & su estado academico</h1>
+
+            <body>               
                 <h1><?php echo $student->getFirstName() . " " . $student->getLastName(); ?></h1>
             </body>
             <table class="table bg-light">
@@ -41,15 +52,6 @@ use DAO\StudentDAO as StudentDAO;
                 </thead>
                 <tbody>
 
-                    <?php
-                    $studentRepo = new StudentDAO();
-
-                    $studentList = $studentRepo->getAllStudent();
-                    $email = "wlorant1@sbwire.com";
-
-                    $student = $studentRepo->getStudentByEmail($email);
-
-                    ?>
 
                     <tr>
                         <td><?php echo $student->getStudentId(); ?></td>
