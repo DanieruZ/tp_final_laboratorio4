@@ -1,53 +1,64 @@
 <?php
-    
+
 namespace Controllers;
 
 use DAO\StudentDAO as StudentDAO;
+use Models\Student;
 
-class StudentController {
-      
-	private $studentDAO;
+class StudentController
+{
 
-  public function __construct() {
+  private $studentDAO;
+
+  public function __construct()
+  {
     $this->studentDAO = new StudentDAO();
   }
 
-  public function ShowStudentWelcomeView() {
-    require_once(VIEWS_PATH."nav-student.php");
-    require_once(VIEWS_PATH."student-welcome.php");
+  public function ShowStudentWelcomeView($student)
+  {
+    require_once(VIEWS_PATH . "nav-student.php");
+    require_once(VIEWS_PATH . "student-welcome.php");
   }
 
-  public function ShowAddView() {
-    require_once(VIEWS_PATH."nav-admin.php");
-    require_once(VIEWS_PATH."student-add.php");
+  public function ShowAddView()
+  {
+    require_once(VIEWS_PATH . "nav-admin.php");
+    require_once(VIEWS_PATH . "student-add.php");
   }
 
-  public function ShowAdminListView() {
-    require_once(VIEWS_PATH."nav-admin.php");
+  public function ShowAdminListView()
+  {
+    require_once(VIEWS_PATH . "nav-admin.php");
     $studentList = $this->studentDAO->getAllStudent();
-    require_once(VIEWS_PATH."student-list-admin.php");
+    require_once(VIEWS_PATH . "student-list-admin.php");
   }
 
-  public function ShowStudentListView() {
-    require_once(VIEWS_PATH."nav-student.php");
+  public function ShowStudentListView()
+  {
+    require_once(VIEWS_PATH . "nav-student.php");
     $studentList = $this->studentDAO->getAllStudent();
-    require_once(VIEWS_PATH."student-list.php");
+    require_once(VIEWS_PATH . "student-list.php");
   }
 
-  public function AddStudent($student) {
+  public function AddStudent($careerId,$firstName,$lastName,$dni,$fileNumber,$gender,$birthDate,$email,$phoneNumber,$active)
+  {
+    $studentId = $this->studentDAO->getNextId();
+    $student = new Student($studentId,$careerId,$firstName,$lastName,$dni,$fileNumber,$gender,$birthDate,$email,$phoneNumber,$active);
     $this->studentDAO->addStudent($student);
     $this->ShowAddView();
   }
 
-  public function DeleteStudent($studentId) {
-  	$this->studentDAO->deleteStudentById($studentId);
-  	$this->ShowAdminListView();
+  public function DeleteStudent($studentId)
+  {
+    $this->studentDAO->deleteStudentById($studentId);
+    $this->ShowAdminListView();
   }
 
-  public function Index(){
-    $this->ShowStudentWelcomeView();
+  public function Index()
+  {
+    $student = $_SESSION["student"];
+    $title = $student->getFirstName();      
+    $this->ShowStudentWelcomeView($student);
   }
-
 }
-
-?>

@@ -4,44 +4,29 @@ namespace Models;
 
 class Admin {
 
-  private $adminId;
-  private $jobPosition;
+  private $adminId; 
   private $firstName;
   private $lastName;
   private $dni;
-  private $fileNumber;
-  private $gender;
-  private $birthDate;
   private $email;
-  private $password;
-  private $phoneNumber;
+ // private $password;
   private $active;
 
   public function __construct(
-    $adminId, 
-    $jobPosition,
+    $adminId,     
     $firstName, 
     $lastName, 
-    $dni, 
-    $fileNumber, 
-    $gender, 
-    $birthDate, 
+    $dni,      
     $email, 
-    $password, 
-    $phoneNumber, 
+   // $password,     
     $active) {
    
-    $this->studentId = $adminId;
-    $this->$jobPosition = $jobPosition;
+    $this->adminId = $adminId;   
     $this->firstName = $firstName;
     $this->lastName = $lastName;
-    $this->dni = $dni;
-    $this->fileNumber = $fileNumber;
-    $this->gender = $gender;
-    $this->birthDate = $birthDate;
+    $this->dni = $dni;   
     $this->email = $email;
-    $this->password = $password;
-    $this->phoneNumber = $phoneNumber;
+   // $this->password = $password;  
     $this->active = $active;
   }
 
