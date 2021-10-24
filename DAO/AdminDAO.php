@@ -20,6 +20,19 @@ class AdminDAO implements IAdminDAO {
     return $this->adminList;
   }
 
+  public function getAdminByEmail($email) {
+    $this->retrieveData();
+    $targetAdmin = null;
+    //die(var_dump($email));
+    foreach($this->adminList as $admin) {
+      if($admin->getEmail() == $email) {
+        $targetAdmin = $admin;
+      }
+    }
+    
+    return $targetAdmin;
+  }
+
   private function retrieveData() {
     $this->adminList = array();
 
@@ -29,17 +42,11 @@ class AdminDAO implements IAdminDAO {
 
       foreach ($arrayToDecode as $valuesArray) {
         $admin = new Admin(
-          $valuesArray["adminId"],
-          $valuesArray["jobPosition"],
+          $valuesArray["adminId"],      
           $valuesArray["firstName"],
           $valuesArray["lastName"],
-          $valuesArray["dni"],
-          $valuesArray["fileNumber"],
-          $valuesArray["gender"],
-          $valuesArray["birthDate"],
-          $valuesArray["email"],
-          $valuesArray["password"],
-          $valuesArray["phoneNumber"],
+          $valuesArray["dni"],         
+          $valuesArray["email"],       
           $valuesArray["active"]
         );
 
@@ -52,17 +59,11 @@ class AdminDAO implements IAdminDAO {
     $arrayToEncode = array();
 
     foreach ($this->adminList as $admin) {
-      $valuesArray["adminId"] = $admin->getAdminId();
-      $valuesArray["jobPosition"] = $admin->getCareerId();
+      $valuesArray["adminId"] = $admin->getAdminId();    
       $valuesArray["firstName"] = $admin->getFirstName();
       $valuesArray["lastName"] = $admin->getLastName();
-      $valuesArray["dni"] = $admin->getDni();
-      $valuesArray["fileNumber"] = $admin->getFileNumber();
-      $valuesArray["gender"] = $admin->getGender();
-      $valuesArray["birthDate"] = $admin->getBirthDate();
-      $valuesArray["email"] = $admin->getEmail();
-      $valuesArray["password"] = $admin->getPassword();
-      $valuesArray["phoneNumber"] = $admin->getPhoneNumber();
+      $valuesArray["dni"] = $admin->getDni(); 
+      $valuesArray["email"] = $admin->getEmail(); 
       $valuesArray["active"] = $admin->getActive();
 
       array_push($arrayToEncode, $valuesArray);
