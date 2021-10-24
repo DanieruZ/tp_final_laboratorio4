@@ -1,0 +1,18 @@
+[
+   {
+    "adminId": 1,    
+    "firstName": "Admninistreitor",
+    "lastName": "Delux 3.0",
+    "dni": "15-992-8607",  
+    "email": "admin@myapp.com",      
+    "active": true  
+   } ,
+   {
+      "adminId": 2,    
+      "firstName": "Terminator",
+      "lastName": "Volvere",
+      "dni": "14-922-8107",  
+      "email": "admin2@myapp.com",      
+      "active": true  
+     }
+]
