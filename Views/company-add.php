@@ -8,7 +8,7 @@ require_once "nav-admin.php";
      <section id="listado" class="mb-5">
           <div class="container">
                <h2 class="mb-4">Add Company</h2>
-               <form action="<?php echo FRONT_ROOT ?>Company/AddCompany" method="post" class="bg-light-alpha p-5">
+               <form action="<?php echo FRONT_ROOT ?>Company/AddCompany" method="post" class="bg-light p-5">
                     <div class="col">                         
                           <div class="col-lg-4">
                               <div class="form-group">
