@@ -1,19 +1,12 @@
-<?php 
-//require_once('nav.php'); 
-require_once('nav-admin.php'); 
-
-
-?>
-
 <main class="py-5">
 	<section id="listado" class="mb-5">
 		<div class="container">
 			<h2 class="mb-4">Add Student</h2>
-			<form action="<?php echo FRONT_ROOT ?>Student/AddStudent" method="post" class="bg-light-alpha p-5">
+			<form action="<?php echo FRONT_ROOT ?>Student/AddStudent" method="post" class="bg-light p-5">
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label for="careerId">Career ID</label>
-							<input type="text" name="careerId" class="form-control">
+							<input type="number" name="careerId" class="form-control">
 						</div>
 					</div>
 					<div class="col-lg-4">
@@ -67,11 +60,11 @@ require_once('nav-admin.php');
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label for="active">Active</label>
-							<input type="text" name="active" class="form-control">
+							<input type="number" name="active" class="form-control">
 						</div>
 					</div>
 				</div>
-				<button type="submit" name="" class="btn btn-dark ml-auto d-block">Agregar</button>
+				<button type="submit" name="" class="btn btn-dark ml-auto d-block">Add</button>
 				
 			</form>
 		</div>

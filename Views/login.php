@@ -7,18 +7,13 @@
 
                $studentList = array();
 
-
                $apiStudent = curl_init(API_URL . 'Student');
                curl_setopt($apiStudent, CURLOPT_URL, API_URL);
 
                curl_setopt($apiStudent, CURLOPT_HTTPHEADER, array('x-api-key: ' . API_KEY));
                curl_setopt($apiStudent, CURLOPT_RETURNTRANSFER, true);
-               // Envio de la peticiÃ³n.
                $response = curl_exec($apiStudent);
                $this->studentList = array();
-
-               //die(var_dump($response));
-
 
                $arrayToDecode = ($response) ? json_decode($response, true) : array();
 
@@ -42,8 +37,6 @@
                     array_push($this->studentList, $student);
                }
 
-               // var_dump($this->studentList);
-
                $arrayToEncode = array();
 
                foreach ($this->studentList as $student) {
@@ -63,7 +56,6 @@
                }
                $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
                file_put_contents('Data/students.json', $jsonContent);
-               //var_dump($arrayToEncode);
 
                ?>
 
@@ -71,7 +63,6 @@
                     <div class="content">
                          <header class="text-center">
                               <h2>Welcome</h2>
-                              <h2>Prueba merge</h2>
                          </header>
                          <form action="Login/Login" method="post" class="login-form bg-light p-5 text-white">
                               <div class="form-group">
@@ -85,8 +76,5 @@
                     </div>
                </main>
 
-               <?php
-               include('footer.php')
-               ?>
-
+               <?php include('footer.php') ?>
 </main>

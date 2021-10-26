@@ -1,25 +1,12 @@
 <?php
-namespace Views;
 
+namespace Views;
 
 use Models\Student as Student;
 use DAO\StudentDAO as StudentDAO;
 
-/**
- * ! esto no funca
- * * aca datos del estudiante & estado academico 
- * * el model AcademicStatus se tiene que crear en Models
- */
-
 $studentRepo = new StudentDAO();
-
 $studentList = $studentRepo->getAllStudent();
-//$email = "wlorant1@sbwire.com";
-
-//$student = $studentRepo->getStudentByEmail($email);
-
-
-
 
 ?>
 
@@ -51,8 +38,6 @@ $studentList = $studentRepo->getAllStudent();
 
                 </thead>
                 <tbody>
-
-
                     <tr>
                         <td><?php echo $student->getStudentId(); ?></td>
                         <td><?php echo $student->getCareerId(); ?></td>
@@ -66,7 +51,6 @@ $studentList = $studentRepo->getAllStudent();
                         <td><?php echo $student->getPhoneNumber(); ?></td>
                         <td><?php echo $student->getActive(); ?></td>
                     </tr>
-
                 </tbody>
             </table>
         </div>

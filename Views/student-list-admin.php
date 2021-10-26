@@ -1,7 +1,7 @@
 <main class="py-5">
    <section id="listado" class="mb-5">
 	   <div class="container-fluid">
-		   <h2 class="mb-4">STUDENT'S LIST</h2>
+		   <h2 class="mb-4">Student's List</h2>
 
 		   <table class="table bg-light">
 			   <thead class="bg-dark text-white">
