@@ -2,7 +2,7 @@
 
 define("ROOT", dirname(__DIR__) . "/");
 // IMPORTANT Path to your project's root folder
-define("FRONT_ROOT", "/tp_final_laboratorio4/");
+define("FRONT_ROOT", "/tp_final_laboratorio4/narrativa_1/");
 define("VIEWS_PATH", "Views/");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "css/");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js/");
