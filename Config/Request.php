@@ -35,6 +35,7 @@
                 {                    
                     foreach($_GET as $key => $value)      
                         $this->parameters[$key] = $value;
+                       
                 }
                 else
                     $this->parameters = $urlArray;
@@ -49,6 +50,7 @@
                 foreach($_FILES as $key => $file)
                 {
                     $this->parameters[$key] = $file;
+                  
                 }
             }
         }

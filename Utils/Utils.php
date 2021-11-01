@@ -5,6 +5,7 @@ namespace Utils;
 use DAO\StudentDAO as StudentDAO;
 use Models\Student as Student;
 use Controllers\HomeController as HomeController;
+use Controllers\StudentController as StudentController;
 use DAO\AdminDAO;
 use Models\Admin as Admin;
 
@@ -74,8 +75,11 @@ class Utils {
       $studentList[$i]->getPhoneNumber(),
       $studentList[$i]->getActive()
       );
-      $_SESSION["student"] = $student;
+      
+      $_SESSION["student"] = $student;     
       header("location:" . FRONT_ROOT . "Student");
+   
+      
 
     } else {
       $homeController = new HomeController();
