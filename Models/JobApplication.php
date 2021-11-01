@@ -8,6 +8,7 @@ class JobApplication {
   private $companyId;
   private $studentId;
   private $jobPositionId;
+  private $adminId;
   private $active;
 
   public function __construct(
@@ -15,12 +16,14 @@ class JobApplication {
     $companyId,
     $studentId,
     $jobPositionId,
+    $adminId,
     $active) {
     
     $this->jobApplicationId = $jobApplicationId;  
     $this->companyId = $companyId;  
     $this->studentId = $studentId;  
     $this->jobPositionId = $jobPositionId;  
+    $this->adminId = $adminId;  
     $this->active = $active;  
   }
 
@@ -60,6 +63,15 @@ class JobApplication {
     return $this;
   }
 
+  public function getAdminId() {
+    return $this->adminId;
+  }
+
+  public function setAdminId($adminId) {
+    $this->adminId = $adminId;
+    return $this;
+  }
+
   public function getActive() {
     return $this->active;
   }
@@ -68,6 +80,7 @@ class JobApplication {
     $this->active = $active;
     return $this;
   }
+
 }
 
 ?>

@@ -5,23 +5,17 @@ namespace Models;
 class JobPosition {
 
   private $jobPositionId;
-  private $companyId;
-  private $jobName;
-  private $jobInfo;
-  private $active;
+  private $careerId;
+  private $description;
 
   public function __construct(
     $jobPositionId,
-    $companyId,
-    $jobName,
-    $jobInfo,
-    $active) {
+    $careerId,
+    $description) {
     
     $this->jobPositionId = $jobPositionId;  
-    $this->companyId = $companyId;  
-    $this->jobName = $jobName;  
-    $this->jobInfo = $jobInfo;  
-    $this->active = $active;  
+    $this->careerId = $careerId;  
+    $this->description = $description;  
   }
 
   public function getJobPositionId() {
@@ -33,41 +27,24 @@ class JobPosition {
     return $this;
   }
 
-  public function getCompanyId() {
-    return $this->companyId;
+  public function getCareerId() {
+    return $this->careerId;
   }
 
-  public function setCompanyId($companyId) {
-    $this->companyId = $companyId;
+  public function setCareerId($careerId) {
+    $this->careerId = $careerId;
     return $this;
   }
 
-  public function getJobName() {
-    return $this->jobName;
+  public function getDescription() {
+    return $this->description;
   }
 
-  public function setJobName($jobName) {
-    $this->jobName = $jobName;
+  public function setDescription($description) {
+    $this->description = $description;
     return $this;
   }
 
-  public function getJobInfo() {
-    return $this->jobInfo;
-  }
-
-  public function setJobInfo($jobInfo) {
-    $this->jobInfo = $jobInfo;
-    return $this;
-  }
-
-  public function getActive() {
-    return $this->active;
-  }
-
-  public function setActive($active) {
-    $this->active = $active;
-    return $this;
-  }
 }
 
 ?>
