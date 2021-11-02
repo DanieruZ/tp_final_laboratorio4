@@ -40,10 +40,37 @@ class CareerDAO implements ICareerDAO {
         $valuesArray["description"],
         $valuesArray["active"],
       );
-      
+
       array_push($this->careerList, $career);
     }
   }  
+
+
+  //* Transfiere los datos de careers json a la bd
+  //! falta la conexion a la bd, se puede realizar manualmente
+  public function transferCareerJsonToDb() {
+    if(file_exists('Data/careers.json')) {
+      $jsonContent = file_get_contents('Data/careers.json');
+      $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+
+      foreach ($arrayToDecode as $row) {
+        $careerId = $row['careerId'];
+        $description = $row['description'];
+        $active = $row['active'];
+
+        $sql = "INSERT INTO JobPosition (
+            'jobPositionId',
+            'careerId', 
+            'description')
+          VALUES (
+            '$careerId',
+            '$description',
+            '$active',
+          );";
+          echo $sql; //! ingresar la conexion a la bd
+      }
+    }
+  }
 
 }
 
