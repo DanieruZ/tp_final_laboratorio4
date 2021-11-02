@@ -33,6 +33,7 @@ class JobApplicationDAO implements IJobApplicationDAO {
           $valuesArray["companyId"],
           $valuesArray["studentId"],
           $valuesArray["jobPositionId"],
+          $valuesArray["adminId"],
           $valuesArray["active"]
         );
 
@@ -49,6 +50,7 @@ class JobApplicationDAO implements IJobApplicationDAO {
       $valuesArray["companyId"] = $jobApplication->getCompanyId();
       $valuesArray["studentId"] = $jobApplication->getStudentId();
       $valuesArray["jobPositionId"] = $jobApplication->getJobPositionId();
+      $valuesArray["adminId"] = $jobApplication->getAdminId();
       $valuesArray["active"] = $jobApplication->getActive();
 
       array_push($arrayToEncode, $valuesArray);
