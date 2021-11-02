@@ -84,8 +84,8 @@ class StudentDAO implements IStudentDAO {
   private function retrieveData() {
     $this->studentList = array();
     
-    $apiStudent = curl_init(API_URL . 'Student');
-    curl_setopt($apiStudent, CURLOPT_URL, API_URL);
+    $apiStudent = curl_init(API_URL_STUDENT . 'Student');
+    curl_setopt($apiStudent, CURLOPT_URL, API_URL_STUDENT);
     curl_setopt($apiStudent, CURLOPT_HTTPHEADER, array('x-api-key: ' . API_KEY));
     curl_setopt($apiStudent, CURLOPT_RETURNTRANSFER, true);
     $response = curl_exec($apiStudent);
