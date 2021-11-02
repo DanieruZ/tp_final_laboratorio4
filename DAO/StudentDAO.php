@@ -66,7 +66,7 @@ class StudentDAO implements IStudentDAO {
         throw $ex;
       }
   }
-  
+
 
   public function getStudentByEmail($email) {
     $this->retrieveData();
@@ -106,6 +106,56 @@ class StudentDAO implements IStudentDAO {
         $valuesArray["active"]
       );
       array_push($this->studentList, $student);
+    }
+  }
+
+  //* Transfiere los datos de un archivo json a la bd
+  //! falta la conexion a la bd, se puede realizar manualmente
+  public function transferStudentJsonToDb() {
+    if(file_exists('Data/students.json')) {
+      $jsonContent = file_get_contents('Data/students.json');
+      $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+
+      foreach ($arrayToDecode as $row) {
+        $studentId = $row['studentId'];
+        $careerId = $row['careerId'];
+        $firstName = $row['firstName'];
+        $lastName = $row['lastName'];
+        $dni = $row['dni'];
+        $fileNumber = $row['fileNumber'];
+        $gender = $row['gender'];
+        $birthDate = $row['birthDate'];
+        $email = $row['email'];
+        $phoneNumber = $row['phoneNumber'];
+        $active = $row['active'];
+
+        $sql = "INSERT INTO Student (
+            'studentId',
+            'careerId', 
+            'firstName', 
+            'lastName', 
+            'dni', 
+            'fileNumber', 
+            'gender', 
+            'birthDate', 
+            'email', 
+            'phoneNumber', 
+            'active')
+          VALUES (
+            '$studentId',
+            '$careerId',
+            '$firstName',
+            '$lastName',
+            '$dni',
+            '$fileNumber',
+            '$gender',
+            '$birthDate',
+            '$email',
+            '$phoneNumber','
+            '$active'
+          );";
+          echo $sql; //! ingresar la conexion a la bd
+      }
     }
   }
 
