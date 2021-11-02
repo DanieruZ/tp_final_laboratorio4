@@ -29,7 +29,7 @@ class StudentDAO implements IStudentDAO {
       $parameters['active'] = $student->getActive();
       
       $this->connection = Connection::GetInstance();
-      $this->connection->ExecuteNonQuery($sql,$parameters);
+      return $this->connection->executeNonQuery($sql, $parameters);
 
     } catch (\PDOException $ex) {
         throw $ex;
@@ -53,6 +53,20 @@ class StudentDAO implements IStudentDAO {
     return $this->studentList;
   }
 
+
+  public function deleteStudentById($studentId) {
+    $sql = "DELETE FROM Student WHERE studentId = :studentId";
+    $parameters['studentId'] = $studentId;
+
+    try {
+      $this->connection = Connection::getInstance();
+      return $this->connection->executeNonQuery($sql, $parameters);
+
+    } catch (\PDOException $ex) {
+        throw $ex;
+      }
+  }
+  
 
   public function getStudentByEmail($email) {
     $this->retrieveData();
