@@ -15,12 +15,14 @@ class JobPositionDAO implements IJobPositionDAO {
   }
 
 
-  //* Muetra consumiendo la API
+  //* Muestra consumiendo la API
   public function getAllJobPosition() {
     $this->retrieveData();
     return $this->jobPositionList;
   }
 
+
+  //* Consume la API jobPosition
   private function retrieveData() {
     $this->jobPositionList = array();
 
@@ -40,6 +42,33 @@ class JobPositionDAO implements IJobPositionDAO {
 
         array_push($this->jobPositionList, $jobPosition);
       }
+  }
+
+
+  //* Transfiere los datos de un archivo json a la bd
+  //! falta la conexion a la bd, se puede realizar manualmente
+  public function transferJobPositionJsonToDb() {
+    if(file_exists('Data/job-positions.json')) {
+      $jsonContent = file_get_contents('Data/job-positions.json');
+      $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+
+      foreach ($arrayToDecode as $row) {
+        $jobPositionId = $row['jobPositionId'];
+        $careerId = $row['careerId'];
+        $description = $row['description'];
+
+        $sql = "INSERT INTO JobPosition (
+            'jobPositionId',
+            'careerId', 
+            'description')
+          VALUES (
+            '$jobPositionId',
+            '$careerId',
+            '$description',
+          );";
+          echo $sql; //! ingresar la conexion a la bd
+      }
+    }
   }
 
 }
