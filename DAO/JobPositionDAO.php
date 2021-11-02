@@ -12,9 +12,10 @@ class JobPositionDAO implements IJobPositionDAO {
   public function addJobPosition(JobPosition $jobPosition) {
     $this->retrieveData();
     array_push($this->jobPositionList, $jobPosition);
-    $this->saveData();
   }
 
+
+  //* Muetra consumiendo la API
   public function getAllJobPosition() {
     $this->retrieveData();
     return $this->jobPositionList;
@@ -23,40 +24,23 @@ class JobPositionDAO implements IJobPositionDAO {
   private function retrieveData() {
     $this->jobPositionList = array();
 
-    if(file_exists('Data/jobpositions.json')) {
-      $jsonContent = file_get_contents('Data/jobpositions.json');
-      $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+    $apiJobPosition = curl_init(API_URL_JOBPOSITION . 'JobPosition');
+    curl_setopt($apiJobPosition, CURLOPT_URL, API_URL_JOBPOSITION);
+    curl_setopt($apiJobPosition, CURLOPT_HTTPHEADER, array('x-api-key: ' . API_KEY));
+    curl_setopt($apiJobPosition, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($apiJobPosition);
+    $arrayToDecode = ($response) ? json_decode($response, true) : array();
 
       foreach ($arrayToDecode as $valuesArray) {
         $jobPosition = new JobPosition(
           $valuesArray["jobPositionId"],
-          $valuesArray["companyId"],
-          $valuesArray["jobName"],
-          $valuesArray["jobInfo"],
-          $valuesArray["active"]
+          $valuesArray["careerId"],
+          $valuesArray["description"]
         );
 
         array_push($this->jobPositionList, $jobPosition);
       }
-    }
   }
-
-  private function saveData() {
-    $arrayToEncode = array();
-
-    foreach ($this->jobPositionList as $jobPosition) {
-      $valuesArray["jobPositionId"] = $jobPosition->getJobPositionId();
-      $valuesArray["companyId"] = $jobPosition->getCompanyId();
-      $valuesArray["jobName"] = $jobPosition->getJobName();
-      $valuesArray["jobInfo"] = $jobPosition->getJobInfo();
-      $valuesArray["active"] = $jobPosition->getActive();
-
-      array_push($arrayToEncode, $valuesArray);
-    }
-
-    $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-    file_put_contents('Data/jobpositions.json', $jsonContent);
-  } 
 
 }
 
