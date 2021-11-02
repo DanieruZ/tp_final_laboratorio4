@@ -11,7 +11,9 @@ define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js/");
 
 // student's api key
 define('API_KEY','4f3bceed-50ba-4461-a910-518598664c08');
-define('API_URL','https://utn-students-api.herokuapp.com/api/Student');
+define('API_URL_STUDENT','https://utn-students-api.herokuapp.com/api/Student');
+define('API_URL_JOBPOSITION','https://utn-students-api.herokuapp.com/api/JobPosition');
+define('API_URL_CAREER','https://utn-students-api.herokuapp.com/api/Career');
 
 define("DB_HOST", "localhost");
 define("DB_NAME", "lab4");
