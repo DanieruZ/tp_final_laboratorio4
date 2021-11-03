@@ -115,7 +115,7 @@ class StudentDAO implements IStudentDAO {
     if(file_exists('Data/students.json')) {
       $jsonContent = file_get_contents('Data/students.json');
       $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
-
+      
       foreach ($arrayToDecode as $row) {
         $studentId = $row['studentId'];
         $careerId = $row['careerId'];
@@ -128,19 +128,19 @@ class StudentDAO implements IStudentDAO {
         $email = $row['email'];
         $phoneNumber = $row['phoneNumber'];
         $active = $row['active'];
-
-        $sql = "INSERT INTO Student (
-            'studentId',
-            'careerId', 
-            'firstName', 
-            'lastName', 
-            'dni', 
-            'fileNumber', 
-            'gender', 
-            'birthDate', 
-            'email', 
-            'phoneNumber', 
-            'active')
+        
+        $sql = "INSERT INTO `Student` (
+            `studentId`,
+            `careerId`, 
+            `firstName`, 
+            `lastName`, 
+            `dni`, 
+            `fileNumber`, 
+            `gender`, 
+            `birthDate`, 
+            `email`, 
+            `phoneNumber`, 
+            `active`)
           VALUES (
             '$studentId',
             '$careerId',
@@ -151,10 +151,11 @@ class StudentDAO implements IStudentDAO {
             '$gender',
             '$birthDate',
             '$email',
-            '$phoneNumber','
+            '$phoneNumber',
             '$active'
           );";
-          echo $sql; //! ingresar la conexion a la bd
+         
+        echo $sql; //! ingresar la conexion a la bd
       }
     }
   }
