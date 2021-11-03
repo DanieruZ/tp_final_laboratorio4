@@ -18,8 +18,6 @@
 				   <th>Active</th>
 			   </thead>
 			   <tbody>
-				  
-					   
 					   <?php
 					  
 					   if (isset($studentList)) {
@@ -40,8 +38,8 @@
 								   <td><?php echo $student->getActive(); ?></td>
 								   <td>
 								   <button type="submit" name="btnRemove"  class="btn btn-danger">
-                                        <a href= "<?php echo FRONT_ROOT ?>Student/DeleteStudent?$id=<?php echo $student->getStudentId(); ?>">Delete</a>
-                                    </button>
+										<a href= "<?php if(isset($student)) {echo FRONT_ROOT . "Student/DeleteStudent/" . $student->getStudentId();}; ?>">Delete</a>
+                  </button>
 								   </td>
 							   </tr>
 					   <?php
@@ -54,5 +52,4 @@
 	   </div>
    </section>
 </main>
-
-<?php include('footer.php') ?>
+<?php include('footer.php') ?> 
