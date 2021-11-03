@@ -53,9 +53,19 @@ class CompanyController {
   }
             
   public function AddCompany($companyName, $email,$phoneNumber,$address,$city,$country, $totalEmployees, $companyInfo,$active) {  
-    Utils::checkAdminSession();
+    Utils::checkAdminSession();    
     $companyId = $this->CompanyDAO->getNextId(); //genera el siguiente ID
-    $company = new Company($companyId, $companyName, $email,$phoneNumber,$address,$city,$country, $totalEmployees, $companyInfo,$active);   
+    $company = new Company();   
+    $company->setCompanyId($companyId);
+    $company->setCompanyName($companyName);
+    $company->setEmail($email);
+    $company->setPhoneNumber($phoneNumber);
+    $company->setAddress($address);
+    $company->setCity($city);
+    $company->setCountry($country);
+    $company->setTotalEmployees($totalEmployees);
+    $company->setCompanyInfo($companyInfo);
+    $company->setActive($active);   
     $this->CompanyDAO->addCompany($company);   
     $this->ShowAddView();
   }
