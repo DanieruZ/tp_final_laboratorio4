@@ -17,31 +17,30 @@ class CompanyDAO implements ICompanyDAO
 
   public function addCompany(Company $company)
   {
-    
-        try {
 
-            $sql = "INSERT INTO  Company (companyName, email, phoneNumber, address, city, country, totalEmployees, companyInfo, active) 
+    try {
+
+      $sql = "INSERT INTO  Company (companyName, email, phoneNumber, address, city, country, totalEmployees, companyInfo, active) 
                 VALUES ( :companyName, :email, :phoneNumber, :address, :city, :country, :totalEmployees, :companyInfo, :active);";
-            
-           // $parameters["companyId"] = $company->getCompanyId();
-            $parameters["companyName"] = $company->getCompanyName();
-            $parameters["email"] = $company->getEmail();
-            $parameters["phoneNumber"] = $company->getPhoneNumber();
-            $parameters["address"] = $company->getAddress();
-            $parameters["city"] = $company->getCity();
-            $parameters["country"] = $company->getCountry();
-            $parameters["totalEmployees"] = $company->getTotalEmployees();
-            $parameters["companyInfo"] = $company->getCompanyInfo();
-            $parameters["active"] = $company->getActive();
 
-            
-            
-            $this->connection = Connection::GetInstance();
-            return $this->connection->ExecuteNonQuery($sql, $parameters);
+      // $parameters["companyId"] = $company->getCompanyId();
+      $parameters["companyName"] = $company->getCompanyName();
+      $parameters["email"] = $company->getEmail();
+      $parameters["phoneNumber"] = $company->getPhoneNumber();
+      $parameters["address"] = $company->getAddress();
+      $parameters["city"] = $company->getCity();
+      $parameters["country"] = $company->getCountry();
+      $parameters["totalEmployees"] = $company->getTotalEmployees();
+      $parameters["companyInfo"] = $company->getCompanyInfo();
+      $parameters["active"] = $company->getActive();
 
-        } catch (\PDOException $ex)  {
-          throw $ex;
-        }
+
+
+      $this->connection = Connection::GetInstance();
+      return $this->connection->ExecuteNonQuery($sql, $parameters);
+    } catch (\PDOException $ex) {
+      throw $ex;
+    }
   }
 
   public function getNextId()
@@ -56,37 +55,36 @@ class CompanyDAO implements ICompanyDAO
 
   public function getAllCompany()
   {
-    $response = NULL;
-        try {
-            $companyList = array();
+    try {
+      $companyList = array();
 
-            $sql = "SELECT * FROM " . $this->tableName;
+      $sql = "SELECT * FROM " . $this->tableName;
 
-            $this->connection = Connection::GetInstance();
+      $this->connection = Connection::GetInstance();
 
-            $resultSet = $this->connection->Execute($sql);
+      $toCompany = $this->connection->Execute($sql);
 
-            foreach ($resultSet as $row) {
+      foreach ($toCompany as $row) {
 
-                $company = new Company();
-                $company->setCompanyId($row["companyId"]);
-                $company->setCompanyName($row["companyName"]);
-                $company->setEmail($row["email"]);
-                $company->setPhoneNumber($row["phoneNumber"]);
-                $company->setAddress($row["address"]);
-                $company->setCity($row["city"]);
-                $company->setCountry($row["country"]);
-                $company->setTotalEmployees($row["totalEmployees"]);
-                $company->setCompanyInfo($row["companyInfo"]);
-                $company->setActive($row["active"]);
+        $company = new Company();
+        $company->setCompanyId($row["companyId"]);
+        $company->setCompanyName($row["companyName"]);
+        $company->setEmail($row["email"]);
+        $company->setPhoneNumber($row["phoneNumber"]);
+        $company->setAddress($row["address"]);
+        $company->setCity($row["city"]);
+        $company->setCountry($row["country"]);
+        $company->setTotalEmployees($row["totalEmployees"]);
+        $company->setCompanyInfo($row["companyInfo"]);
+        $company->setActive($row["active"]);
 
-                array_push($companyList, $company);
-            }
+        array_push($companyList, $company);
+      }
 
-            return $companyList;
-        }catch (\PDOException $ex)  {
-          throw $ex;
-        }
+      return $companyList;
+    } catch (\PDOException $ex) {
+      throw $ex;
+    }
   }
 
   // Se duerme para utilizar la BD
@@ -130,10 +128,9 @@ class CompanyDAO implements ICompanyDAO
     try {
       $this->connection = Connection::getInstance();
       return $this->connection->executeNonQuery($sql, $parameters);
-
     } catch (\PDOException $ex) {
-        throw $ex;
-      }
+      throw $ex;
+    }
   }
 
   public function updateCompany($companyId, $companyName, $email, $phoneNumber, $address, $city, $country, $totalEmployees, $companyInfo, $active)
