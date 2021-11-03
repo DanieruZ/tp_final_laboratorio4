@@ -10,6 +10,7 @@ class StudentDAO implements IStudentDAO {
     
   private $studentList = array();
   private $connection;
+  private $tableName = "Student";
 
   public function addStudent(Student $student) {
     try {
@@ -48,9 +49,42 @@ class StudentDAO implements IStudentDAO {
 
 
   //* Muestra todos los estudiantes consumiendo la API 
+  // public function getAllStudent() {
+  //   $this->retrieveData();
+  //   return $this->studentList;
+  // }
+
+  //* Muestra todos los estudiantes desde la bd  
   public function getAllStudent() {
-    $this->retrieveData();
-    return $this->studentList;
+    try {
+      $studentList = array();
+
+      $sql = "SELECT * FROM " . $this->tableName;
+
+      $this->connection = Connection::GetInstance();
+      $toStudent = $this->connection->Execute($sql);
+
+      foreach ($toStudent as $row) {
+        $student = new Student();
+        $student->setStudentId($row['studentId']);
+        $student->setCareerId($row['careerId']);
+        $student->setFirstName($row['firstName']);
+        $student->setLastName($row['lastName']);
+        $student->setDni($row['dni']);
+        $student->setFileNumber($row['fileNumber']); 
+        $student->setGender($row['gender']);
+        $student->setBirthDate($row['birthDate']);
+        $student->setEmail($row['email']);
+        $student->setPhoneNumber($row['phoneNumber']);
+        $student->setActive($row['active']);
+
+        array_push($studentList, $student);
+      }
+      return $studentList;
+
+    } catch (\PDOException $ex) {
+        throw $ex;
+      }
   }
 
 
