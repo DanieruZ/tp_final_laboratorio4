@@ -17,7 +17,7 @@ define('API_URL_CAREER','https://utn-students-api.herokuapp.com/api/Career');
 
 define("DB_HOST", "localhost");
 define("DB_NAME", "lab4");
-define("DB_USER", "admin");
+define("DB_USER", "root");
 define("DB_PASS", "");
 
 ?>
