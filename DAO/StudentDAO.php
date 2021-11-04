@@ -10,11 +10,11 @@ class StudentDAO implements IStudentDAO {
     
   private $studentList = array();
   private $connection;
-  private $tableName = "Student";
+  private $tableName = "student";
 
   public function addStudent(Student $student) {
     try {
-      $sql = "INSERT INTO Student (studentId, careerId, firstName, lastName, dni, fileNumber, gender, birthDate, email, phoneNumber, active) 
+      $sql = "INSERT INTO student (studentId, careerId, firstName, lastName, dni, fileNumber, gender, birthDate, email, phoneNumber, active) 
               VALUES (:studentId,:careerId,:firstName,:lastName,:dni,:fileNumber,:gender,:birthDate,:email,:phoneNumber,:active)";
 
       $parameters['studentId'] = $student->getStudentId();
@@ -48,13 +48,21 @@ class StudentDAO implements IStudentDAO {
   }
 
 
-  //* Muestra todos los estudiantes consumiendo la API 
+  /**
+   * 
+   * * Muestra todos los estudiantes consumiendo la API 
+   *
+   */
  //  public function getAllStudent() {
   //   $this->retrieveData();
    //  return $this->studentList;
   // }
 
-  //* Muestra todos los estudiantes desde la bd  
+  /**
+   * 
+   * * Muestra todos los estudiantes desde la bd  
+   *
+   */
   public function getAllStudent() {
     try {
       $studentList = array();
@@ -90,7 +98,7 @@ class StudentDAO implements IStudentDAO {
 
 
   public function deleteStudentById($studentId) {
-    $sql = "DELETE FROM Student WHERE studentId = :studentId";
+    $sql = "DELETE FROM student WHERE studentId = :studentId";
     $parameters['studentId'] = $studentId;
 
     try {
@@ -128,7 +136,11 @@ class StudentDAO implements IStudentDAO {
     return $targetStudent;
   }
 
-  //* Consume la API de students
+  /**
+   * 
+   * * Consume la API de students
+   *
+   */
   private function retrieveData() {
     $this->studentList = array();
     
@@ -157,8 +169,12 @@ class StudentDAO implements IStudentDAO {
     }
   }
 
-  //* Transfiere los datos de un archivo json a la bd
-  //! falta la conexion a la bd, se puede realizar manualmente
+
+  /**
+   * 
+   * * Transfiere los datos de students json a la bd
+   *
+   */
   public function transferStudentJsonToDb() {
     if(file_exists('Data/students.json')) {
       $jsonContent = file_get_contents('Data/students.json');
@@ -177,7 +193,7 @@ class StudentDAO implements IStudentDAO {
         $phoneNumber = $row['phoneNumber'];
         $active = $row['active'];
         
-        $sql = "INSERT INTO `Student` (
+        $sql = "INSERT INTO `student` (
             `studentId`,
             `careerId`, 
             `firstName`, 

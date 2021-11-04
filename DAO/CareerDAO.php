@@ -46,8 +46,11 @@ class CareerDAO implements ICareerDAO {
   }  
 
 
-  //* Transfiere los datos de careers json a la bd
-  //! falta la conexion a la bd, se puede realizar manualmente
+  /**
+   * 
+   * * Transfiere los datos de careers json a la bd
+   *
+   */
   public function transferCareerJsonToDb() {
     if(file_exists('Data/careers.json')) {
       $jsonContent = file_get_contents('Data/careers.json');
@@ -58,7 +61,7 @@ class CareerDAO implements ICareerDAO {
         $description = $row['description'];
         $active = $row['active'];
 
-        $sql = "INSERT INTO JobPosition (
+        $sql = "INSERT INTO career (
             'jobPositionId',
             'careerId', 
             'description')
@@ -67,7 +70,7 @@ class CareerDAO implements ICareerDAO {
             '$description',
             '$active',
           );";
-          echo $sql; //! ingresar la conexion a la bd
+          echo $sql;
       }
     }
   }
