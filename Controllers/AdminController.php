@@ -13,36 +13,43 @@ class AdminController {
   public function __construct() {
     $this->adminDAO = new AdminDAO();
   }
+
   
   public function ShowAdminWelcomeView($admin) {
+    Utils::checkAdminSession();
     require_once(VIEWS_PATH."nav-admin.php");
     require_once(VIEWS_PATH."admin-welcome.php");
   }
 
-  public function ShowAddAdminView(){
+
+  public function ShowAddView(){
+    Utils::checkAdminSession();
     require_once(VIEWS_PATH."nav-admin.php");
     require_once(VIEWS_PATH."admin-add.php");
-}
-
-
-  public function Index() {
-    $admin = $_SESSION["admin"];
-    $title = $admin->getFirstName();   
-    $this->ShowAdminWelcomeView($admin);
   }
 
-  public function AddAdmin($firstName, $lastName,$dni,$email,$active) {  
+
+  
+  public function AddAdmin($firstName, $lastName, $dni, $email, $active) {  
     Utils::checkAdminSession();    
-    $adminId = $this->AdminDAO->getNextId(); //genera el siguiente ID
+    $adminId = $this->adminDAO->getNextId(); //genera el siguiente ID
     $admin = new Admin();   
+    $admin->setAdminId($adminId);
     $admin->setFirstName($firstName);
     $admin->setLastName($lastName);
     $admin->setDni($dni);
     $admin->setEmail($email);
     $admin->setActive($active); 
-
-    $this->AdminDAO->addAdmin($admin);   
-    $this->ShowAddAdminView();
+    
+    $this->adminDAO->addAdmin($admin);   
+    $this->ShowAddView();
+  }
+  
+  
+  public function Index() {
+    $admin = $_SESSION["admin"];
+    $title = $admin->getFirstName();   
+    $this->ShowAdminWelcomeView($admin);
   }
 
 }
