@@ -54,29 +54,37 @@ class Utils {
   public static function initStudentSession($email) {
     $studenRepo = new StudentDAO();
     $studentList = $studenRepo->getAllStudent();
-
+    //die(var_dump($studentList)); 
     $i = 0; 
 
     while ($i < count($studentList) && ($studentList[$i]->getEmail() != $email)) {
       $i++;
     }
 
+   // die(var_dump($studentList[$i]->getFirstName()));
+  
     if ($i < count($studentList)) {
-      $student = new Student(
-      $studentList[$i]->getStudentId(),
-      $studentList[$i]->getCareerId(),
-      $studentList[$i]->getFirstName(),
-      $studentList[$i]->getLastName(),
-      $studentList[$i]->getDni(),
-      $studentList[$i]->getFileNumber(),
-      $studentList[$i]->getGender(),
-      $studentList[$i]->getBirthDate(),
-      $studentList[$i]->getEmail(),
-      $studentList[$i]->getPhoneNumber(),
-      $studentList[$i]->getActive()
-      );
       
-      $_SESSION["student"] = $student;     
+      $student = new Student();
+      $student->setStudentId($studentList[$i]->getStudentId());
+      $student->setCareerId($studentList[$i]->getCareerId());
+      $student->setFirstName($studentList[$i]->getFirstName());
+      $student->setLastName($studentList[$i]->getLastName());
+      $student->setDni($studentList[$i]->getDni());
+      $student->setFileNumber($studentList[$i]->getFileNumber());
+      $student->setGender($studentList[$i]->getGender());
+      $student->setBirthDate($studentList[$i]->getBirthDate());
+      $student->setEmail($studentList[$i]->getEmail());
+      $student->setPhoneNumber($studentList[$i]->getPhoneNumber());
+      $student->setActive($studentList[$i]->getActive());
+    
+    
+     
+      
+       // die(var_dump($student->setActive($studentList[$i]->getActive())));
+  
+      $_SESSION["student"] = $student;   
+      
       header("location:" . FRONT_ROOT . "Student");
    
       
