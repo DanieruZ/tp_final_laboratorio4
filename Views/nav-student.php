@@ -5,7 +5,7 @@
   <ul class="navbar-nav ml-auto">
     <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student">Home</a> </li>
     <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company\ShowCompanyListStudentView">Company's List</a> </li>
-    <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student/ShowStudentListView">Student's List</a> </li>
+    <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>">St</a> </li>
     <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Login/Logout">Logout</a> </li>  
   </ul>
 </nav>
