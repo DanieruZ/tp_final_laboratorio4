@@ -49,9 +49,9 @@ class StudentDAO implements IStudentDAO {
 
 
   //* Muestra todos los estudiantes consumiendo la API 
-  // public function getAllStudent() {
+ //  public function getAllStudent() {
   //   $this->retrieveData();
-  //   return $this->studentList;
+   //  return $this->studentList;
   // }
 
   //* Muestra todos los estudiantes desde la bd  
@@ -86,6 +86,7 @@ class StudentDAO implements IStudentDAO {
         throw $ex;
       }
   }
+  
 
 
   public function deleteStudentById($studentId) {
@@ -100,6 +101,19 @@ class StudentDAO implements IStudentDAO {
         throw $ex;
       }
   }
+
+  public function getStudentById($studentId)
+    {
+        $this->RetrieveData();
+
+        foreach ($this->studentList as $student) {
+            if ($student->getStudentId() == $studentId){
+                return $student;
+            }
+        }
+        
+        return null;
+    }
 
 
   public function getStudentByEmail($email) {
@@ -125,21 +139,21 @@ class StudentDAO implements IStudentDAO {
     $response = curl_exec($apiStudent);
     $arrayToDecode = ($response) ? json_decode($response, true) : array();
 
-    foreach ($arrayToDecode as $valuesArray) {
-      $student = new Student(
-        $valuesArray["studentId"],
-        $valuesArray["careerId"],
-        $valuesArray["firstName"],
-        $valuesArray["lastName"],
-        $valuesArray["dni"],
-        $valuesArray["fileNumber"],
-        $valuesArray["gender"],
-        $valuesArray["birthDate"],
-        $valuesArray["email"],
-        $valuesArray["phoneNumber"],
-        $valuesArray["active"]
-      );
-      array_push($this->studentList, $student);
+    
+      foreach ($arrayToDecode as $row) {
+        $student = new Student();
+        $student->setStudentId($row['studentId']);
+        $student->setCareerId($row['careerId']);
+        $student->setFirstName($row['firstName']);
+        $student->setLastName($row['lastName']);
+        $student->setDni($row['dni']);
+        $student->setFileNumber($row['fileNumber']); 
+        $student->setGender($row['gender']);
+        $student->setBirthDate($row['birthDate']);
+        $student->setEmail($row['email']);
+        $student->setPhoneNumber($row['phoneNumber']);
+        $student->setActive($row['active']);          
+      array_push($this->studentList, $student);      
     }
   }
 
@@ -195,5 +209,3 @@ class StudentDAO implements IStudentDAO {
   }
 
 }
-    
-?> 
