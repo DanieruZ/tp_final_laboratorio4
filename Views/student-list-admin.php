@@ -18,34 +18,32 @@
 				   <th>Active</th>
 			   </thead>
 			   <tbody>
-					   <?php
-					  
-					   if (isset($studentList)) {
-						  
-						   foreach ($studentList as $student) {
-					   ?>
-							   <tr>
-								   <td><?php echo $student->getStudentId(); ?></td>
-								   <td><?php echo $student->getCareerId(); ?></td>
-								   <td><?php echo $student->getFirstName(); ?></td>
-								   <td><?php echo $student->getLastName(); ?></td>
-								   <td><?php echo $student->getDni(); ?></td>
-								   <td><?php echo $student->getFileNumber(); ?></td>
-								   <td><?php echo $student->getGender(); ?></td>
-								   <td><?php echo $student->getBirthDate(); ?></td>
-								   <td><?php echo $student->getEmail(); ?></td>
-								   <td><?php echo $student->getPhoneNumber(); ?></td>
-								   <td><?php echo $student->getActive(); ?></td>
-								   <td>
-								   <button type="submit" name="btnRemove"  class="btn btn-danger">
-										<a href= "<?php if(isset($student)) {echo FRONT_ROOT . "Student/DeleteStudent/" . $student->getStudentId();}; ?>">Delete</a>
-                  </button>
-								   </td>
-							   </tr>
-					   <?php
+				 <?php
+						if(isset($studentList)) {
+							foreach ($studentList as $student) {
+					?>
+						<tr>
+							<td><?php echo $student->getStudentId(); ?></td>
+							<td><?php echo $student->getCareerId(); ?></td>
+							<td><?php echo $student->getFirstName(); ?></td>
+							<td><?php echo $student->getLastName(); ?></td>
+							<td><?php echo $student->getDni(); ?></td>
+							<td><?php echo $student->getFileNumber(); ?></td>
+							<td><?php echo $student->getGender(); ?></td>
+							<td><?php echo $student->getBirthDate(); ?></td>
+							<td><?php echo $student->getEmail(); ?></td>
+							<td><?php echo $student->getPhoneNumber(); ?></td>
+							<td><?php echo $student->getActive(); ?></td>
+							<td>
+						  	<button type="submit" name="btnRemove"  class="btn btn-danger">
+									<a href= "<?php if(isset($student)) {echo FRONT_ROOT . "Student/DeleteStudent/" . $student->getStudentId();}; ?>">Delete</a>
+            		</button>
+							</td>
+						</tr>
+					  <?php
 						   }
 					   }
-					   ?>
+					  ?>
 				  
 			   </tbody>
 		   </table>

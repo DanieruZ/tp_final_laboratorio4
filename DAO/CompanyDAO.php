@@ -13,17 +13,16 @@ class CompanyDAO implements ICompanyDAO
 
   private $companyList = array();
   private $connection;
-  private $tableName = "Company";
+  private $tableName = "company";
 
   public function addCompany(Company $company)
   {
 
     try {
 
-      $sql = "INSERT INTO  Company (companyName, email, phoneNumber, address, city, country, totalEmployees, companyInfo, active) 
+      $sql = "INSERT INTO  company (companyName, email, phoneNumber, address, city, country, totalEmployees, companyInfo, active) 
                 VALUES ( :companyName, :email, :phoneNumber, :address, :city, :country, :totalEmployees, :companyInfo, :active);";
 
-      // $parameters["companyId"] = $company->getCompanyId();
       $parameters["companyName"] = $company->getCompanyName();
       $parameters["email"] = $company->getEmail();
       $parameters["phoneNumber"] = $company->getPhoneNumber();
@@ -121,7 +120,7 @@ class CompanyDAO implements ICompanyDAO
 
   public function deleteCompanyById($companyId)
   {
-    $sql = "DELETE FROM Company WHERE companyId=:companyId";
+    $sql = "DELETE FROM company WHERE companyId=:companyId";
     $parameters['companyId'] = $companyId;
 
 

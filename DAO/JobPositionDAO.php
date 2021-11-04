@@ -15,14 +15,22 @@ class JobPositionDAO implements IJobPositionDAO {
   }
 
 
-  //* Muestra consumiendo la API
+  /**
+   * 
+   * * Muestra consumiendo la API jobPosition
+   *
+   */
   public function getAllJobPosition() {
     $this->retrieveData();
     return $this->jobPositionList;
   }
 
 
-  //* Consume la API jobPosition
+  /**
+   * 
+   * * Consume la API jobPosition
+   *
+   */
   private function retrieveData() {
     $this->jobPositionList = array();
 
@@ -45,8 +53,11 @@ class JobPositionDAO implements IJobPositionDAO {
   }
 
 
-  //* Transfiere los datos de un archivo json a la bd
-  //! falta la conexion a la bd, se puede realizar manualmente
+  /**
+   * 
+   * * Transfiere los datos de jobPosition json a la bd
+   *
+   */
   public function transferJobPositionJsonToDb() {
     if(file_exists('Data/job-positions.json')) {
       $jsonContent = file_get_contents('Data/job-positions.json');
@@ -57,7 +68,7 @@ class JobPositionDAO implements IJobPositionDAO {
         $careerId = $row['careerId'];
         $description = $row['description'];
 
-        $sql = "INSERT INTO JobPosition (
+        $sql = "INSERT INTO job-position (
             'jobPositionId',
             'careerId', 
             'description')
@@ -66,7 +77,7 @@ class JobPositionDAO implements IJobPositionDAO {
             '$careerId',
             '$description',
           );";
-          echo $sql; //! ingresar la conexion a la bd
+          echo $sql;
       }
     }
   }
