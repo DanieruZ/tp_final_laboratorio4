@@ -4,6 +4,7 @@
   </span>
   <ul class="navbar-nav ml-auto">
     <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Admin">Home</a> </li>
+    <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Admin\AddAdmin">Add Admin</a> </li>
     <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company\ShowAddView">Add Company</a> </li>
     <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company\ShowCompanyListAdminView" >Company's List</a> </li>
     <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student/ShowAddView">Add Student</a> </li>
