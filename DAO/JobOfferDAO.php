@@ -15,7 +15,7 @@ class JobOfferDAO implements IJobOfferDAO {
  
     try {
 
-      $sql = "INSERT INTO  jobOffer (companyId, jobPositionId, studentId, adminId, description, active) 
+      $sql = "INSERT INTO  joboffer (companyId, jobPositionId, studentId, adminId, description, active) 
                 VALUES ( :companyId, :jobPositionId, :studentId, :adminId, :description, :active);";
 
     

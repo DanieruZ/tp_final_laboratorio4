@@ -7,12 +7,12 @@ use Models\Admin as Admin;
 use DAO\Connection as Connection;
 
 class AdminDAO implements IAdminDAO {
-private $tableName = "Admin";
-private $connection;
 
-
+  private $tableName = "admin";
+  private $connection;
   private $adminList = array();
-/*
+
+  /*
   public function addAdmin(Admin $admin) {
     $this->retrieveData();
     array_push($this->adminList, $admin);
