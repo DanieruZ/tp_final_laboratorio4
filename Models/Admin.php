@@ -9,25 +9,9 @@ class Admin {
   private $lastName;
   private $dni;
   private $email;
- // private $password;
   private $active;
 
-  public function __construct(
-    $adminId,     
-    $firstName, 
-    $lastName, 
-    $dni,      
-    $email, 
-   // $password,     
-    $active) {
-   
-    $this->adminId = $adminId;   
-    $this->firstName = $firstName;
-    $this->lastName = $lastName;
-    $this->dni = $dni;   
-    $this->email = $email;
-   // $this->password = $password;  
-    $this->active = $active;
+  public function __construct() {
   }
 
   public function getAdminId() {
@@ -39,16 +23,7 @@ class Admin {
     return $this;
   }
 
-  public function getJobPosition() {
-    return $this->jobPosition;
-  }
-
-  public function setJobPosition($jobPosition) {
-    $this->jobPosition = $jobPosition;
-    return $this;
-  }
-
-  public function getFirstName() {
+    public function getFirstName() {
     return $this->firstName;
   }
 
@@ -74,58 +49,13 @@ class Admin {
     $this->dni = $dni;
     return $this;
   }
-
-  public function getFileNumber() {
-    return $this->fileNumber;
-  }
-
-  public function setFileNumber($fileNumber) {
-    $this->fileNumber = $fileNumber;
-    return $this;
-  }
-
-  public function getGender() {
-    return $this->gender;
-  }
-
-  public function setGender($gender) {
-    $this->gender = $gender;
-    return $this;
-  }
-
-  public function getBirthDate() {
-    return $this->birthDate;
-  }
-
-  public function setBirthDate($birthDate) {
-    $this->birthDate = $birthDate;
-    return $this;
-  }
-
+  
   public function getEmail() {
     return $this->email;
   }
 
   public function setEmail($email) {
     $this->email = $email;
-    return $this;
-  }
-
-  public function getPassword() {
-    return $this->password;
-  }
-
-  public function setPassword($password) {
-    $this->password = $password;
-    return $this;
-  }
-
-  public function getPhoneNumber() {
-    return $this->phoneNumber;
-  }
-
-  public function setPhoneNumber($phoneNumber) {
-    $this->phoneNumber = $phoneNumber;
     return $this;
   }
 
