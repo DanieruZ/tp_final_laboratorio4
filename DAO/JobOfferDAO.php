@@ -16,15 +16,15 @@ class JobOfferDAO implements IJobOfferDAO {
 
   public function addJobOffer(JobOffer $jobOffer) {
     try {
-      $sql = "INSERT INTO  joboffer (companyId, companyName, jobPositionId, studentId, adminId, description, active) 
-              VALUES ( :companyId, :companyName, :jobPositionId, :studentId, :adminId, :description, :active);";
+      $sql = "INSERT INTO  joboffer (companyId, companyName, jobPositionId, studentId, adminId, descriptionJobOffer, active) 
+              VALUES ( :companyId, :companyName, :jobPositionId, :studentId, :adminId, :descriptionJobOffer, :active);";
 
       $parameters["companyId"] = $jobOffer->getCompanyId();
       $parameters["companyName"] = $jobOffer->getCompanyName();
       $parameters["jobPositionId"] = $jobOffer->getJobPositionId();
       $parameters["studentId"] = $jobOffer->getStudentId();
       $parameters["adminId"] = $jobOffer->getAdminId();
-      $parameters["description"] = $jobOffer->getDescription();
+      $parameters["descriptionJobOffer"] = $jobOffer->getDescriptionJobOffer();
       $parameters["active"] = $jobOffer->getActive();
      
       $this->connection = Connection::GetInstance();
@@ -63,7 +63,7 @@ class JobOfferDAO implements IJobOfferDAO {
         $jobOffer->setJobPositionId($row["jobPositionId"]);
         $jobOffer->setStudentId($row["studentId"]);
         $jobOffer->setAdminId($row["adminId"]);
-        $jobOffer->setDescription($row["description"]);
+        $jobOffer->setDescriptionJobOffer($row["descriptionJobOffer"]);
         $jobOffer->setActive($row["active"]);
 
         array_push($jobOfferList, $jobOffer);
@@ -90,7 +90,7 @@ class JobOfferDAO implements IJobOfferDAO {
         $jobOffer->setCompanyId($row["companyId"]);
         $jobOffer->setCompanyName($row["companyName"]);
         $jobOffer->setJobPositionId($row["jobPositionId"]);     
-        $jobOffer->setDescription($row["description"]);
+        $jobOffer->setDescriptionJobOffer($row["descriptionJobOffer"]);
         $jobOffer->setActive($row["active"]);
 
         array_push($jobOfferList, $jobOffer);
@@ -166,7 +166,7 @@ class JobOfferDAO implements IJobOfferDAO {
         $jobOffer->setJobPositionId($row["jobPositionId"]);
         $jobOffer->setStudentId($row["studentId"]);
         $jobOffer->setAdminId($row["adminId"]);
-        $jobOffer->setDescription($row["description"]);
+        $jobOffer->setDescriptionJobOffer($row["descriptionJobOffer"]);
         $jobOffer->setActive($row["active"]);
 
         array_push($jobOfferList, $jobOffer);
@@ -200,7 +200,7 @@ class JobOfferDAO implements IJobOfferDAO {
         $jobOffer->setJobPositionId($row["jobPositionId"]);
         $jobOffer->setStudentId($row["studentId"]);
         $jobOffer->setAdminId($row["adminId"]);
-        $jobOffer->setDescription($row["description"]);
+        $jobOffer->setDescriptionJobOffer($row["descriptionJobOffer"]);
         $jobOffer->setActive($row["active"]);;
 
         array_push($jobOfferList, $jobOffer);
@@ -225,7 +225,7 @@ class JobOfferDAO implements IJobOfferDAO {
       $jobOffer = new JobOffer;
       $parameters["jobOfferId"] = $jobOffer->getJobOfferId();
       $parameters["companyName"] = $jobOffer->getCompanyName();
-      $parameters["description"] = $jobOffer->getDescription();
+      $parameters["descriptionJobOffer"] = $jobOffer->getDescriptionJobOffer();
       $parameters["active"] = $jobOffer->getActive();
           
       $this->connection = Connection::GetInstance();
