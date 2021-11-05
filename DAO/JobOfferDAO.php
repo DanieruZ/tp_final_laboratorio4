@@ -33,6 +33,14 @@ class JobOfferDAO implements IJobOfferDAO {
   }
 
 
+  public function getNextId() {
+    $id = 0;
+
+    foreach ($this->jobOfferList as $jobOffer) {
+      $id = ($jobOffer->getJobOfferId() > $id) ? $jobOffer->getJobOfferId() : $id;
+    }
+    return $id + 1;
+  }
  
   function getAllJobOffer(){
 
