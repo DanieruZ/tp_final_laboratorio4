@@ -89,6 +89,20 @@ class JobOfferDAO implements IJobOfferDAO {
       }
   }
 
+  public function changeJobOfferActive($jobOfferId) {
+    try {
+      $sql = "UPDATE joboffer SET active = 1 WHERE jobOfferId = :jobOfferId ;";
+
+      $parameters["jobOfferId"] = $jobOfferId;
+
+      $this->connection = Connection::GetInstance();
+      return $this->connection->ExecuteNonQuery($sql, $parameters);
+      
+    } catch (\PDOException $ex) {
+        throw $ex;
+      }
+  }
+
 
   public function getJobOffer($jobOfferId) {
     try {
