@@ -8,18 +8,21 @@ use Models\JobOffer as JobOffer;
 use Models\Student as Student;
 use DAO\StudentDAO as StudentDAO;
 use DAO\JobPositionDAO as JobPositionDAO;
+use DAO\JobApplicationDAO as JobApplicationDAO;
 
 class JobOfferController {
         
   private $JobOfferDAO;
   private $CompanyDAO;
   private $JobPositionDAO;
+  private $JobApplicationDAO;
   private $StudentDAO;
 
   public function __construct() {
     $this->JobOfferDAO = new JobOfferDAO();
     $this->CompanyDAO = new CompanyDAO;
     $this->JobPositionDAO = new JobPositionDAO;
+    $this->JobApplicationDAO = new JobApplicationDAO;
     $this->StudentDAO = new StudentDAO;
   }
   
@@ -51,6 +54,15 @@ public function ShowApplicationView(){
  
 }
 
+public function ShowHistoryApplicationView(){
+  require_once(VIEWS_PATH."nav-student.php");  
+  $jobOfferList = $this->JobOfferDAO->getAllJobOfferbyName();
+  $jobPositionList = $this->JobPositionDAO->getAllJobPositionByName(); 
+  $jobApplicationList = $this->JobApplicationDAO->getAllJoApplicationHisotory(); 
+  require_once(VIEWS_PATH."student-history-application.php");    
+ 
+}
+
 
 
 
@@ -65,7 +77,7 @@ public function ShowApplicationView(){
     $jobOffer->setCompanyName($this->CompanyDAO->getCompanyNameById($companyId));
     $jobOffer->setStudentId(0);
     $jobOffer->setAdminId($_SESSION["admin"]->getAdminId());
-    $jobOffer->setDescription($description);
+    $jobOffer->setdescriptionJobOffer($description);
     $jobOffer->setActive(1);       
    // die(var_dump($jobOffer->setCompanyName("Buenas")));    
     $this->JobOfferDAO->addJobOffer($jobOffer);   
@@ -73,16 +85,19 @@ public function ShowApplicationView(){
   }
 
   public function DeleteJobOffer($jobOfferId){
+    Utils::checkAdminSession();  
     $this->JobOfferDAO->deleteJobOfferById($jobOfferId);
     $this->ShowJobOfferListAdminView();
   }
 
   public function ChangeJobOfferActiveById($jobOfferId){
+    Utils::checkAdminSession();  
     $this->JobOfferDAO->changeJobOfferActive($jobOfferId);
     $this->ShowJobOfferListAdminView();
   }
 
   public function ChangeJobOfferInactiveById($jobOfferId){
+    Utils::checkAdminSession();  
     $this->JobOfferDAO->changeJobOfferInactive($jobOfferId);
     $this->ShowJobOfferListAdminView();
   }  
