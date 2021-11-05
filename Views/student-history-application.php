@@ -28,7 +28,7 @@
                             <button type="submit" name="btnChange" class="btn btn-danger">
                                 <a href="<?php if (isset($jobOffer)) {
                                                 echo FRONT_ROOT . "JobOffer/changeJobOfferInactiveById/" . $jobOffer->getJobOfferId();
-                                            }; ?>">Inactive</a>
+                                            }; ?>">unapply</a>
                             </button>
                         </td>
                         </tr>
