@@ -28,7 +28,7 @@
                         <td>                  
                             <button type="submit" name="btnChange" class="btn btn-danger">
                                 <a href="<?php if (isset($jobOffer)) {
-                                    echo FRONT_ROOT . "JobOffer/ShowHistoryApplicationView/" . $jobOffer->getJobOfferId();}; ?>">Applicate</a>
+                                    echo FRONT_ROOT . "JobOffer/Application/" . $jobOffer->getJobOfferId();}; ?>">Applicate</a>
                             </button>                            
                         </td>
                     </tr>
