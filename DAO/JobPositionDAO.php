@@ -52,6 +52,8 @@ class JobPositionDAO implements IJobPositionDAO {
       }
   }
 
+  
+
   public function getAllJobPositionByName()
   {
       try {
