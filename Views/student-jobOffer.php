@@ -13,24 +13,27 @@
                 </thead>
                 <tbody>
                     <?php
-                          
-                        foreach ($jobOfferList as $jobOffer) {                
+                        $jobPosition =0;
+                            
+                        foreach ($jobOfferList as $jobOffer) {  
+   
+                            foreach ($jobPositionList as $jobPosition) {               
                     ?>
                     <tr>                    
                         <td><?php echo $jobOffer->getCompanyName(); ?></td>
                         <td><?php echo $jobPosition->getDescription(); ?></td>                      
-                        <td><?php echo $jobOffer->getDescription(); ?></td>                                              
-                        <td><?php echo $jobOffer->getActive(); ?></td>                         
+                        <td><?php echo $jobOffer->getDescriptionJobOffer(); ?></td>                                              
+                        <td><?php echo $jobOffer->getActive(); ?></td>         
                       
                         <td>                  
                             <button type="submit" name="btnChange" class="btn btn-danger">
                                 <a href="<?php if (isset($jobOffer)) {
-                                    echo FRONT_ROOT . "JobOffer/changeJobOfferInactiveById/" . $jobOffer->getJobOfferId();}; ?>">Applicate</a>
+                                    echo FRONT_ROOT . "JobOffer/ShowHistoryApplicationView/" . $jobOffer->getJobOfferId();}; ?>">Applicate</a>
                             </button>                            
                         </td>
                     </tr>
                     <?php
-                      
+                        }
                     }
                         ?>
                 </tbody>
