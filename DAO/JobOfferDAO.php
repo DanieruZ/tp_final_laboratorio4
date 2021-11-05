@@ -12,28 +12,24 @@ class JobOfferDAO implements IJobOfferDAO {
   private $connection;
 
   public function addJobOffer(JobOffer $jobOffer) {
- 
     try {
+      $sql = "INSERT INTO  joboffer (companyId, companyName, jobPositionId, studentId, adminId, description, active) 
+              VALUES ( :companyId, :companyName, :jobPositionId, :studentId, :adminId, :description, :active);";
 
-      $sql = "INSERT INTO  joboffer (companyId, jobPositionId, studentId, adminId, description, active) 
-                VALUES ( :companyId, :jobPositionId, :studentId, :adminId, :description, :active);";
-
-    
       $parameters["companyId"] = $jobOffer->getCompanyId();
+      $parameters["companyName"] = $jobOffer->getCompanyName();
       $parameters["jobPositionId"] = $jobOffer->getJobPositionId();
       $parameters["studentId"] = $jobOffer->getStudentId();
       $parameters["adminId"] = $jobOffer->getAdminId();
       $parameters["description"] = $jobOffer->getDescription();
       $parameters["active"] = $jobOffer->getActive();
      
-
-
-
       $this->connection = Connection::GetInstance();
       return $this->connection->ExecuteNonQuery($sql, $parameters);
+
     } catch (\PDOException $ex) {
-      throw $ex;
-    }
+        throw $ex;
+      }
   }
 
 
