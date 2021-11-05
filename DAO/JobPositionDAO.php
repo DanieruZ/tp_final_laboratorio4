@@ -20,9 +20,36 @@ class JobPositionDAO implements IJobPositionDAO {
    * * Muestra consumiendo la API jobPosition
    *
    */
-  public function getAllJobPosition() {
-    $this->retrieveData();
-    return $this->jobPositionList;
+  // public function getAllJobPosition() {
+  //   $this->retrieveData();
+  //   return $this->jobPositionList;
+  // }
+
+  public function getAllJobPosition()
+  {
+      try {
+          $jobPositionList = array();
+
+          $sql = "SELECT * FROM jobposition ";   
+            
+
+          $this->connection = Connection::GetInstance();
+
+          $toJobPosition = $this->connection->Execute($sql);
+
+          foreach ($toJobPosition as $row) {
+              $jobPosition = new JobPosition();
+              $jobPosition->setJobPositionId($row["jobPositionId"]);
+              $jobPosition->setCareerId($row["careerId"]);
+              $jobPosition->setDescription($row["description"]);
+             
+
+              array_push($jobPositionList, $jobPosition);
+          }
+          return $jobPositionList;
+      } catch (\PDOException $ex) {
+        throw $ex;
+      }
   }
 
 
@@ -52,7 +79,7 @@ class JobPositionDAO implements IJobPositionDAO {
       }
   }
 
-
+  
   /**
    * 
    * * Transfiere los datos de jobPosition json a la bd
