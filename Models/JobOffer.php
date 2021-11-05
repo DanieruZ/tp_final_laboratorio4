@@ -140,25 +140,7 @@ class JobOffer {
         return $this;
     }
 
-    /**
-     * Get the value of description
-     */ 
-    public function getDescriptionJobOffer()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set the value of description
-     *
-     * @return  self
-     */ 
-    public function setDescriptionJobOffer($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+   
 
     /**
      * Get the value of active
@@ -181,6 +163,26 @@ class JobOffer {
     }
 
     
+
+    /**
+     * Get the value of descriptionJobOffer
+     */ 
+    public function getDescriptionJobOffer()
+    {
+        return $this->descriptionJobOffer;
+    }
+
+    /**
+     * Set the value of descriptionJobOffer
+     *
+     * @return  self
+     */ 
+    public function setDescriptionJobOffer($descriptionJobOffer)
+    {
+        $this->descriptionJobOffer = $descriptionJobOffer;
+
+        return $this;
+    }
 }
 
 
