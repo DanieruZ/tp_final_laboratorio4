@@ -73,6 +73,19 @@ class JobOfferDAO implements IJobOfferDAO {
   }
 
 
+  public function deleteJobOfferById($jobOfferId) {
+    try {
+      $sql = "DELETE FROM joboffer WHERE jobOfferId = :jobOfferId;";
+        
+      $parameters["jobOfferId"] = $jobOfferId;
+
+      $this->connection = Connection::GetInstance();
+      return $this->connection->ExecuteNonQuery($sql, $parameters);
+      
+    } catch (\PDOException $ex) {
+        throw $ex;
+      }
+  }
 
 }
 
