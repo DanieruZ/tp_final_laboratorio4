@@ -8,10 +8,8 @@ class Career {
   private $description;
   private $active;
 
-  public function __construct($careerId, $description, $active) {
-    $this->careerId = $careerId;
-    $this->description = $description;
-    $this->active = $active;
+  public function __construct() {
+    
   }
 
 
