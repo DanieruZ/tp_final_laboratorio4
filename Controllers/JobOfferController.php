@@ -60,10 +60,8 @@ public function AddFormJobOffer()
     $jobOffer->setStudentId(0);
     $jobOffer->setAdminId($_SESSION["admin"]->getAdminId());
     $jobOffer->setDescription($description);
-    $jobOffer->setActive(1);   
-    
-   // die(var_dump($jobOffer->setCompanyName("Buenas")));
-    
+    $jobOffer->setActive(1);       
+   // die(var_dump($jobOffer->setCompanyName("Buenas")));    
     $this->JobOfferDAO->addJobOffer($jobOffer);   
     $this->ShowAddJobOfferView();
   }
@@ -74,12 +72,12 @@ public function AddFormJobOffer()
   }
 
   public function changeActiveJobOfferById($jobOfferId){
-    $this->JobOfferDAO->changeActiveJobOffer($jobOfferId);
+    $this->JobOfferDAO->changeJobOfferActive($jobOfferId);
     $this->ShowJobOfferListAdminView();
   }
 
   public function changeInactiveJobOfferById($jobOfferId){
-    $this->JobOfferDAO->changeInactiveJobOffer($jobOfferId);
+    $this->JobOfferDAO->changeJobOfferInactive($jobOfferId);
     $this->ShowJobOfferListAdminView();
   }
   

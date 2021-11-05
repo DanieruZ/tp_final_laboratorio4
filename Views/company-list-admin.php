@@ -38,7 +38,7 @@
                                         <a href= "<?php if(isset($company)) {echo FRONT_ROOT . "Company/DeleteCompany/" . $company->getCompanyId();}; ?>">Delete</a>
                                         </button>
                                         <button type="submit" name="update"  class="btn">
-                                        <a href= "<?php  echo FRONT_ROOT?>Company/ShowUpdateView?$id=<?php echo $company->getCompanyId();?>&$companyName=<?php echo $company->getCompanyName();?>&$email=<?php echo $company->getEmail();?>&$phoneNumber=<?php echo $company->getPhoneNumber();?>&$address=<?php echo $company->getAddress();?>&$city=<?php echo $company->getCity();?>&$country=<?php echo $company->getCountry();?>&$totalEmployees=<?php echo $company->getTotalEmployees();?>&$companyInfo=<?php echo $company->getCompanyInfo();?>&$active=<?php echo $company->getActive();?>">Update</a>
+                                        <a href= "<?php  echo FRONT_ROOT?>Company/ShowUpdateView<?php echo $company->getCompanyId();?>&$companyName=<?php echo $company->getCompanyName();?>&$email=<?php echo $company->getEmail();?>&$phoneNumber=<?php echo $company->getPhoneNumber();?>&$address=<?php echo $company->getAddress();?>&$city=<?php echo $company->getCity();?>&$country=<?php echo $company->getCountry();?>&$totalEmployees=<?php echo $company->getTotalEmployees();?>&$companyInfo=<?php echo $company->getCompanyInfo();?>&$active=<?php echo $company->getActive();?>">Update</a>
                                         </button>
                                    </td>
                               </tr>
