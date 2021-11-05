@@ -61,7 +61,6 @@ class StudentController
     $student->setEmail($email);
     $student->setPhoneNumber($phoneNumber);
     $student->setActive($active);
-
     $this->studentDAO->addStudent($student);
     $this->ShowAddView();
   }
