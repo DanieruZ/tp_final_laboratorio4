@@ -10,7 +10,7 @@ class JobOffer {
     private $jobPositionId;
     private $studentId;
     private $adminId;
-    private $description;
+    private $descriptionJobOffer;
     private $active;
     
 
@@ -143,7 +143,7 @@ class JobOffer {
     /**
      * Get the value of description
      */ 
-    public function getDescription()
+    public function getDescriptionJobOffer()
     {
         return $this->description;
     }
@@ -153,7 +153,7 @@ class JobOffer {
      *
      * @return  self
      */ 
-    public function setDescription($description)
+    public function setDescriptionJobOffer($description)
     {
         $this->description = $description;
 
@@ -179,6 +179,8 @@ class JobOffer {
 
         return $this;
     }
+
+    
 }
 
 
