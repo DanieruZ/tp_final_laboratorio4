@@ -72,12 +72,12 @@ public function AddFormJobOffer()
   }
 
   public function changeActiveJobOfferById($jobOfferId){
-    $this->JobOfferDAO->changeActiveJobOffer($jobOfferId);
+    $this->JobOfferDAO->changeJobOfferActive($jobOfferId);
     $this->ShowJobOfferListAdminView();
   }
 
   public function changeInactiveJobOfferById($jobOfferId){
-    $this->JobOfferDAO->changeInactiveJobOffer($jobOfferId);
+    $this->JobOfferDAO->changeJobOfferInactive($jobOfferId);
     $this->ShowJobOfferListAdminView();
   }
   

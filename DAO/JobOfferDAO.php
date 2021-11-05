@@ -10,6 +10,8 @@ class JobOfferDAO implements IJobOfferDAO {
 
   private $jobOfferList = array();
   private $connection;
+  private $tableName = 'joboffer';
+ 
 
   public function addJobOffer(JobOffer $jobOffer) {
     try {
@@ -87,6 +89,34 @@ class JobOfferDAO implements IJobOfferDAO {
       }
   }
 
+  public function changeJobOfferActive($jobOfferId) {
+    try {
+      $sql = "UPDATE joboffer SET active = 1 WHERE jobOfferId = :jobOfferId ;";
+
+      $parameters["jobOfferId"] = $jobOfferId;
+
+      $this->connection = Connection::GetInstance();
+      return $this->connection->ExecuteNonQuery($sql, $parameters);
+      
+    } catch (\PDOException $ex) {
+        throw $ex;
+      }
+  }
+
+  public function changeJobOfferInactive($jobOfferId) {
+    try {
+      $sql = "UPDATE joboffer SET active = 0 WHERE jobOfferId = :jobOfferId ;";
+
+      $parameters["jobOfferId"] = $jobOfferId;
+
+      $this->connection = Connection::GetInstance();
+      return $this->connection->ExecuteNonQuery($sql, $parameters);
+      
+    } catch (\PDOException $ex) {
+        throw $ex;
+      }
+  } 
+
 
   public function getJobOffer($jobOfferId) {
     try {
@@ -110,14 +140,15 @@ class JobOfferDAO implements IJobOfferDAO {
         $jobOffer->setAdminId($row["adminId"]);
         $jobOffer->setDescription($row["description"]);
         $jobOffer->setActive($row["active"]);
-      }
-      return $jobOffer;
-      
-    } catch (\PDOException $ex) {
-        throw $ex;
-      }
-  }
 
+        array_push($jobOfferList, $jobOffer);
+      }
+
+      return $jobOfferList;
+    } catch (\PDOException $ex) {
+      throw $ex;
+    }
+  }
 }
 
 ?>

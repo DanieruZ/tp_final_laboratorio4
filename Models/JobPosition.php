@@ -8,14 +8,7 @@ class JobPosition {
   private $careerId;
   private $description;
 
-  public function __construct(
-    $jobPositionId,
-    $careerId,
-    $description) {
-    
-    $this->jobPositionId = $jobPositionId;  
-    $this->careerId = $careerId;  
-    $this->description = $description;  
+  public function __construct() {
   }
 
   public function getJobPositionId() {
