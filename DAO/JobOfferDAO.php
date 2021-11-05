@@ -42,11 +42,38 @@ class JobOfferDAO implements IJobOfferDAO {
     return $id + 1;
   }
  
-  function getAllJobOffer(){
 
+  public function getAllJobOffer() {
+    try {
+      $jobOfferList = array();
+
+      $sql = "SELECT * FROM " . $this->tableName;
+
+      $this->connection = Connection::GetInstance();
+      $toJobOffer = $this->connection->Execute($sql);
+
+      foreach ($toJobOffer as $row) {
+        $jobOffer = new JobOffer();
+        $jobOffer->setJobOfferId($row["jobOfferId"]);
+        $jobOffer->setCompanyId($row["companyId"]);
+        $jobOffer->setCompanyName($row["companyName"]);
+        $jobOffer->setJobPositionId($row["jobPositionId"]);
+        $jobOffer->setStudentId($row["studentId"]);
+        $jobOffer->setAdminId($row["adminId"]);
+        $jobOffer->setDescription($row["description"]);
+        $jobOffer->setActive($row["active"]);
+
+        array_push($jobOfferList, $jobOffer);
+      }
+      return $jobOfferList;
+
+    } catch (\PDOException $ex) {
+        throw $ex;
+      }
   }
+
+
 
 }
 
-
-  ?>
+?>
