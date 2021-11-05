@@ -17,9 +17,36 @@ class CareerDAO implements ICareerDAO {
 
 
   //* Muestra todas las carreras consumiendo la API 
-  public function getAllCareer() {
-    $this->retrieveData();
-    return $this->careerList;
+  //public function getAllCareer() {
+   // $this->retrieveData();
+    //return $this->careerList;
+ // }
+
+  public function getAllCareer()
+  {
+    try {
+      $careerList = array();
+
+      $sql = "SELECT * FROM  career ";
+
+      $this->connection = Connection::GetInstance();
+
+      $toCareer = $this->connection->Execute($sql);
+
+      foreach ($toCareer as $row) {
+
+        $career = new Career();
+        $career->setCareerId($row["careerId"]);
+        $career->setDescription($row["description"]);              
+        $career->setActive($row["active"]);
+
+        array_push($careerList, $career);
+      }
+
+      return $careerList;
+    } catch (\PDOException $ex) {
+      throw $ex;
+    }
   }
 
 

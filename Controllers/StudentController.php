@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use DAO\StudentDAO as StudentDAO;
+use DAO\CareerDAO as CareerDAO;
 use Models\Student;
 use Utils\Utils;
 
@@ -10,10 +11,13 @@ class StudentController
 {
 
   private $studentDAO;
+  private $CareerDAO;
 
   public function __construct()
   {
     $this->studentDAO = new StudentDAO();
+    $this->CareerDAO = new CareerDAO();
+
   }
 
   public function ShowStudentWelcomeView($student)
@@ -27,6 +31,7 @@ class StudentController
   {
     Utils::checkAdminSession();
     require_once(VIEWS_PATH . "nav-admin.php");
+    $careerList =  $this->CareerDAO->getAllCareer();
     require_once(VIEWS_PATH . "student-add.php");
   }
 

@@ -5,8 +5,19 @@
 			<form action="<?php echo FRONT_ROOT ?>Student/AddStudent" method="post" class="bg-light p-5">
 					<div class="col-lg-4">
 						<div class="form-group">
-							<label for="careerId">Career ID</label>
-							<input type="number" name="careerId" class="form-control">
+							<label for="careerId">Career</label>												
+							<select name="careerId"  required class="form-control form-control-ml">
+                                        <option style="color:grey" hidden selected>Carrer</option>
+									
+                                        <?php
+                                       
+                                        if (isset($careerList)) {
+                                             foreach ($careerList as $career) {
+                                                  echo "<option value=" . $career->getCareerId() . ">" . $career->getDescription() . "</option>";
+                                             }
+                                        }
+                                        ?>
+                                   </select>
 						</div>
 					</div>
 					<div class="col-lg-4">

@@ -145,31 +145,63 @@ class CompanyDAO implements ICompanyDAO
     }
   }
 
+
   public function updateCompany($companyId, $companyName, $email, $phoneNumber, $address, $city, $country, $totalEmployees, $companyInfo, $active)
   {
-    $this->retrieveData();
+    try {
 
-    foreach ($this->companyList as $company) {
-      if ($company->getCompanyId() == $companyId) {
-        $this->deleteCompanyById($companyId);
-        $newCompany = new Company(
-          $companyId,
-          $companyName,
-          $email,
-          $phoneNumber,
-          $address,
-          $city,
-          $country,
-          $totalEmployees,
-          $companyInfo,
-          $active
-        );
+      $sql = "UPDATE  company SET companyName=:companyName, email=:email,
+        phoneNumber=:phoneNumber, address=:address, city=:city, country=:country, totalEmployees=:totalEmployees, companyInfo=:companyInfo, active=:active
+        WHERE companyId = :companyId;";
 
-        array_push($this->companyList, $newCompany);
-      }
+      $company = new Company;
+      $parameters["companyId"] = $company->getCompanyId();
+      $parameters["companyName"] = $company->getCompanyName();
+      $parameters["email"] = $company->getEmail();
+      $parameters["phoneNumber"] = $company->getPhoneNumber();
+      $parameters["address"] = $company->getAddress();
+      $parameters["city"] = $company->getCity();
+      $parameters["country"] = $company->getCountry();
+      $parameters["totalEmployees"] = $company->getTotalEmployees();
+      $parameters["companyInfo"] = $company->getCompanyInfo();
+      $parameters["active"] = $company->getActive();
+
+      $this->connection = Connection::GetInstance();
+
+      return $this->connection->ExecuteNonQuery($sql, $parameters);
+
+    } catch (\PDOException $ex) {
+      throw $ex;
     }
-    $this->saveData();
   }
+
+
+  // public function updateCompany($companyId, $companyName, $email, $phoneNumber, $address, $city, $country, $totalEmployees, $companyInfo, $active)
+  // {
+  //   $this->retrieveData();
+
+  //   foreach ($this->companyList as $company) {
+  //     if ($company->getCompanyId() == $companyId) {
+  //       $this->deleteCompanyById($companyId);
+  //       $newCompany = new Company(
+  //         $companyId,
+  //         $companyName,
+  //         $email,
+  //         $phoneNumber,
+  //         $address,
+  //         $city,
+  //         $country,
+  //         $totalEmployees,
+  //         $companyInfo,
+  //         $active
+  //       );
+
+  //       array_push($this->companyList, $newCompany);
+  //     }
+  //   }
+  //   $this->saveData();
+  // }
+
 
   private function retrieveData()
   {
@@ -198,6 +230,7 @@ class CompanyDAO implements ICompanyDAO
     }
   }
 
+
   private function saveData()
   {
     $arrayToEncode = array();
@@ -220,4 +253,7 @@ class CompanyDAO implements ICompanyDAO
     $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
     file_put_contents('Data/companies.json', $jsonContent);
   }
+
 }
+
+?>

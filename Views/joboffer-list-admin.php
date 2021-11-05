@@ -26,7 +26,7 @@
                         <td><?php echo $jobOffer->getCompanyName(); ?></td>
                         <td><?php echo $jobOffer->getJobPositionId(); ?></td>
                         <td><?php echo $jobOffer->getStudentId(); ?></td>
-                        <td><?php echo $jobOffer->getDescription(); ?></td>
+                        <td><?php echo $jobOffer->getDescriptionJobOffer(); ?></td>
                         <td><?php echo $jobOffer->getAdminId(); ?></td>                       
                         <td><?php echo $jobOffer->getActive(); ?></td>                         
                       

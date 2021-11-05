@@ -5,19 +5,25 @@ use Utils\Utils as Utils;
 use DAO\JobOfferDAO as JobOfferDAO;
 use DAO\CompanyDAO as CompanyDAO;
 use Models\JobOffer as JobOffer;
+use Models\Student as Student;
 use DAO\StudentDAO as StudentDAO;
 use DAO\JobPositionDAO as JobPositionDAO;
+use DAO\JobApplicationDAO as JobApplicationDAO;
 
 class JobOfferController {
         
   private $JobOfferDAO;
   private $CompanyDAO;
   private $JobPositionDAO;
+  private $JobApplicationDAO;
+  private $StudentDAO;
 
   public function __construct() {
     $this->JobOfferDAO = new JobOfferDAO();
     $this->CompanyDAO = new CompanyDAO;
     $this->JobPositionDAO = new JobPositionDAO;
+    $this->JobApplicationDAO = new JobApplicationDAO;
+    $this->StudentDAO = new StudentDAO;
   }
   
   public function ShowJobOfferListAdminView() {
@@ -40,14 +46,26 @@ class JobOfferController {
    
 }
 
-//Chequear de borrar despues
-public function AddFormJobOffer()
-{
-  Utils::checkAdminSession(); 
-    $companyList = $this->CompanyDAO->getAllCompany();
-    $jobPositions = $this->JobPositionDAO->getAllJobPosition();
-    require_once(VIEWS_PATH . "jobOffer-add.php");
+public function ShowApplicationView(){
+  require_once(VIEWS_PATH."nav-student.php");  
+  $jobOfferList = $this->JobOfferDAO->getAllJobOfferbyName();
+  $jobPositionList = $this->JobPositionDAO->getAllJobPositionByName(); 
+  require_once(VIEWS_PATH."student-jobOffer.php");    
+ 
 }
+
+public function ShowHistoryApplicationView(){
+  require_once(VIEWS_PATH."nav-student.php");  
+  $jobOfferList = $this->JobOfferDAO->getAllJobOfferbyName();
+  $jobPositionList = $this->JobPositionDAO->getAllJobPositionByName(); 
+  $jobApplicationList = $this->JobApplicationDAO->getAllJoApplicationHisotory(); 
+  require_once(VIEWS_PATH."student-history-application.php");    
+ 
+}
+
+
+
+
 
 
   public function AddJobOffer($companyId,$jobPositionId,$description) {  
@@ -59,7 +77,7 @@ public function AddFormJobOffer()
     $jobOffer->setCompanyName($this->CompanyDAO->getCompanyNameById($companyId));
     $jobOffer->setStudentId(0);
     $jobOffer->setAdminId($_SESSION["admin"]->getAdminId());
-    $jobOffer->setDescription($description);
+    $jobOffer->setdescriptionJobOffer($description);
     $jobOffer->setActive(1);       
    // die(var_dump($jobOffer->setCompanyName("Buenas")));    
     $this->JobOfferDAO->addJobOffer($jobOffer);   
@@ -67,39 +85,44 @@ public function AddFormJobOffer()
   }
 
   public function DeleteJobOffer($jobOfferId){
+    Utils::checkAdminSession();  
     $this->JobOfferDAO->deleteJobOfferById($jobOfferId);
     $this->ShowJobOfferListAdminView();
   }
 
-  public function changeActiveJobOfferById($jobOfferId){
+  public function ChangeJobOfferActiveById($jobOfferId){
+    Utils::checkAdminSession();  
     $this->JobOfferDAO->changeJobOfferActive($jobOfferId);
     $this->ShowJobOfferListAdminView();
   }
 
-  public function changeInactiveJobOfferById($jobOfferId){
+  public function ChangeJobOfferInactiveById($jobOfferId){
+    Utils::checkAdminSession();  
     $this->JobOfferDAO->changeJobOfferInactive($jobOfferId);
     $this->ShowJobOfferListAdminView();
-  }
-  
-  public function ShowOffer($jobOfferId)
-  {
-      Utils::checkAdminSession(); 
-    //  die(var_dump($this->JobPositionDAO->getAllActiveCareer())); 
-      $company = $this->CompanyDAO->getAllCompany();   
-       
-      $jobPositions = $this->JobPositionDAO->getAllActiveCareer();
-     // $jobOffer = $this->jobOfferDAO->getJobOffer();
-      //die(var_dump($jobOffer));
-     // $student = $this->studentDAO->getStudentById($jobOffer->getStudentId());
+  }  
 
-      if (isset($_SESSION['admin'])) {
-          require_once(VIEWS_PATH . "jobOffer-list-admin.php");
-      } else {
-          $user = $_SESSION['student'];
-          require_once(VIEWS_PATH . "jobOffer-list-student.php");
-      }
+  public function Application($jobOfferId)
+  {
+    Utils::checkStudentSession();       
+
+          $jobOffer = $this->jobOfferDAO->getJobOffer($jobOfferId);
+          if ($jobOffer->getActive() == 1) {
+              $studentId = $this->student->getStudentId();
+              $this->jobOfferDAO->AddStudentApplication($jobOffer, $studentId);             
+           
+              $SubscribeSuccess = true;
+          } else {
+              $closedOffer = true;
+          }
+      
+      $jobOffer = $this->jobOfferDAO->GetJobOffer($jobOfferId);
+      $student = $this->studentDAO->GetByStudentId($studentId);
+      $this->ShowApplicationView();
   }
 
 }
+
+
 
 ?>

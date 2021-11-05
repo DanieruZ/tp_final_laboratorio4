@@ -52,6 +52,35 @@ class JobPositionDAO implements IJobPositionDAO {
       }
   }
 
+  
+
+  public function getAllJobPositionByName()
+  {
+      try {
+          $jobPositionList = array();
+
+          $sql ="SELECT description FROM joboffer jo     
+      INNER JOIN jobposition jp on jo.jobPositionId = jp.jobPositionId     
+      WHERE jo.jobOfferId =  jp.jobPositionId ";
+            
+
+          $this->connection = Connection::GetInstance();
+
+          $toJobPosition = $this->connection->Execute($sql);
+
+          foreach ($toJobPosition as $row) {
+              $jobPosition = new JobPosition();             
+              $jobPosition->setDescription($row["description"]);
+             
+
+              array_push($jobPositionList, $jobPosition);
+          }
+          return $jobPositionList;
+      } catch (\PDOException $ex) {
+        throw $ex;
+      }
+  }
+
 
   /**
    * 
