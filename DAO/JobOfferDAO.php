@@ -147,7 +147,11 @@ class JobOfferDAO implements IJobOfferDAO {
 
 
   public function getJobOffer($jobOfferId) {
+
+  
     try {
+      $jobOfferList = array();
+
       $sql = "SELECT *
       FROM joboffer jo
       INNER JOIN company cp on jo.companyId = cp.companyId
@@ -168,7 +172,7 @@ class JobOfferDAO implements IJobOfferDAO {
         $jobOffer->setAdminId($row["adminId"]);
         $jobOffer->setDescriptionJobOffer($row["descriptionJobOffer"]);
         $jobOffer->setActive($row["active"]);
-
+        //die(var_dump($jobOffer));
         array_push($jobOfferList, $jobOffer);
       }
 
@@ -243,9 +247,9 @@ class JobOfferDAO implements IJobOfferDAO {
         $query = "UPDATE jobapplication SET studentId=:studentId, active=:active
         WHERE jobOfferId = :jobOfferId;";
 
-        $parameters["id_jobOffer"] = $jobOffer->getJobOfferId();
-        $parameters["state"] = "Closed";
-        $parameters["student_id"] = $studentId;
+        $parameters["jobOfferId"] = $jobOffer->getJobOfferId();
+        $parameters["active"] = 0;
+        $parameters["studentId"] = $studentId;
 
         $this->connection = Connection::GetInstance();
 
