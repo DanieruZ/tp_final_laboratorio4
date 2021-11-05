@@ -75,12 +75,9 @@ class CompanyController {
     $this->ShowCompanyListAdminView();
   }
 
-  /**
-   * * creo que pasandole por parametro solo $company funcionaria
-   * * se tendria que modificar el metodo en CompanyDAO & ICompanyDAO
-   * * despues de $this->deleteCompanyById($companyId);(linea 77) agregar addCompany
-   */
+
   public function UpdateCompany($companyId, $companyName, $email,$phoneNumber,$address,$city,$country, $totalEmployees, $companyInfo,$active){
+    Utils::checkAdminSession(); 
     $this->CompanyDAO->updateCompany($companyId, $companyName, $email,$phoneNumber,$address,$city,$country, $totalEmployees, $companyInfo,$active);
     $this->ShowCompanyListAdminView();
   }
