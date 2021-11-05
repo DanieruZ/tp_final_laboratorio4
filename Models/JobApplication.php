@@ -2,85 +2,106 @@
 
 namespace Models;
 
-class JobApplication {
+class JobApplication
+{
 
   private $jobApplicationId;
   private $companyId;
   private $studentId;
   private $jobPositionId;
+  private $jobOfferId;
   private $adminId;
   private $active;
 
-  public function __construct(
-    $jobApplicationId,
-    $companyId,
-    $studentId,
-    $jobPositionId,
-    $adminId,
-    $active) {
-    
-    $this->jobApplicationId = $jobApplicationId;  
-    $this->companyId = $companyId;  
-    $this->studentId = $studentId;  
-    $this->jobPositionId = $jobPositionId;  
-    $this->adminId = $adminId;  
-    $this->active = $active;  
+  public function __construct()
+  {
   }
 
-  public function getJobApplicationId() {
+  public function getJobApplicationId()
+  {
     return $this->jobApplicationId;
   }
 
-  public function setJobApplicationId($jobApplicationId) {
+  public function setJobApplicationId($jobApplicationId)
+  {
     $this->jobApplicationId = $jobApplicationId;
     return $this;
   }
 
-  public function getCompanyId() {
+  public function getCompanyId()
+  {
     return $this->companyId;
   }
 
-  public function setCompanyId($companyId) {
+  public function setCompanyId($companyId)
+  {
     $this->companyId = $companyId;
     return $this;
   }
 
-  public function getStudentId() {
+  public function getStudentId()
+  {
     return $this->studentId;
   }
 
-  public function setStudentId($studentId) {
+  public function setStudentId($studentId)
+  {
     $this->studentId = $studentId;
     return $this;
   }
 
-  public function getJobPositionId() {
+  public function getJobPositionId()
+  {
     return $this->jobPositionId;
   }
 
-  public function setJobPositionId($jobPositionId) {
+  public function setJobPositionId($jobPositionId)
+  {
     $this->jobPositionId = $jobPositionId;
     return $this;
   }
 
-  public function getAdminId() {
+  public function getAdminId()
+  {
     return $this->adminId;
   }
 
-  public function setAdminId($adminId) {
+  public function setAdminId($adminId)
+  {
     $this->adminId = $adminId;
     return $this;
   }
 
-  public function getActive() {
+  public function getActive()
+  {
     return $this->active;
   }
 
-  public function setActive($active) {
+  public function setActive($active)
+  {
     $this->active = $active;
     return $this;
   }
 
-}
+ 
 
-?>
+  /**
+   * Get the value of jobOfferId
+   */ 
+  public function getJobOfferId()
+  {
+    return $this->jobOfferId;
+  }
+
+  /**
+   * Set the value of jobOfferId
+   *
+   * @return  self
+   */ 
+  public function setJobOfferId($jobOfferId)
+  {
+    $this->jobOfferId = $jobOfferId;
+
+    return $this;
+  }
+}
