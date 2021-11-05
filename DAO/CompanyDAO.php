@@ -118,7 +118,7 @@ class CompanyDAO implements ICompanyDAO
     return $companyName;
   }
 
-
+//
   public function getCompanyNameById($companyId) {
     $companyList = $this->getAllCompany();
 
@@ -130,7 +130,7 @@ class CompanyDAO implements ICompanyDAO
     return $companyName;
   }
 
-  
+
   public function deleteCompanyById($companyId)
   {
     $sql = "DELETE FROM company WHERE companyId=:companyId";
