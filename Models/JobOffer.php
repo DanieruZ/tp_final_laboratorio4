@@ -6,6 +6,7 @@ class JobOffer {
 
     private $jobOfferId;
     private $companyId;
+    private $companyName;
     private $jobPositionId;
     private $studentId;
     private $adminId;
@@ -59,6 +60,26 @@ class JobOffer {
         return $this;
     }
 
+    /**
+     * Get the value of companyName
+     */ 
+    public function getCompanyName()
+    {
+        return $this->companyName;
+    }
+
+    /**
+     * Set the value of companyName
+     *
+     * @return  self
+     */ 
+    public function setCompanyName($companyName)
+    {
+        $this->companyName = $companyName;
+
+        return $this;
+    }
+    
     /**
      * Get the value of jobPositionId
      */ 
