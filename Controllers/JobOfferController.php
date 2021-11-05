@@ -113,22 +113,19 @@ class JobOfferController
 
   public function Application($jobOfferId)
   {
-    $jobOffer2 = new JobOffer();
+    
     Utils::checkStudentSession();
     $jobOffer= $this->JobOfferDAO->getJobOffer($jobOfferId);
 
-      die(var_dump($this->student->getStudentId()));
-        if ($jobOffer2->getActive() == 0) {
-      $studentId = $this->student->getStudentId();
-      $this->jobOfferDAO->AddStudentApplication($jobOffer, $studentId);
+      //die(var_dump($jobOffer));
+       //if ($jobOffer2->getActive() == 0) {
+     // $studentId = $this->student->getStudentId();
+     // $this->jobOfferDAO->AddStudentApplication($jobOffer, $studentId);
 
-      $SubscribeSuccess = true;
-    } else {
-      $closedOffer = true;
-    }
+   
 
-    $jobOffer = $this->jobOfferDAO->GetJobOffer($jobOfferId);
-    $student = $this->studentDAO->GetByStudentId($studentId);
+    //$jobOffer = $this->jobOfferDAO->GetJobOffer($jobOfferId);
+   // $student = $this->studentDAO->GetByStudentId($studentId);
     $this->ShowApplicationView();
   }
 }
