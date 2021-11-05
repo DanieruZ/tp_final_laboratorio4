@@ -87,6 +87,37 @@ class JobOfferDAO implements IJobOfferDAO {
       }
   }
 
+
+  public function getJobOffer($jobOfferId) {
+    try {
+      $sql = "SELECT *
+      FROM joboffer jo
+      INNER JOIN company cp on jo.companyId = cp.companyId
+      INNER JOIN jobposition jp on jo.jobPositionId = jp.jobPositionId
+      INNER JOIN career cr on jp.careerId = cr.careerId
+      WHERE jo.jobOfferId = " . $jobOfferId . ";";
+          
+      $this->connection = Connection::GetInstance();
+      $resultSet = $this->connection->Execute($sql);
+
+      foreach ($resultSet as $row) {
+        $jobOffer = new JobOffer();
+        $jobOffer->setJobOfferId($row["jobOfferId"]);
+        $jobOffer->setCompanyId($row["companyId"]);
+        $jobOffer->setCompanyName($row["companyName"]);
+        $jobOffer->setJobPositionId($row["jobPositionId"]);
+        $jobOffer->setStudentId($row["studentId"]);
+        $jobOffer->setAdminId($row["adminId"]);
+        $jobOffer->setDescription($row["description"]);
+        $jobOffer->setActive($row["active"]);
+      }
+      return $jobOffer;
+      
+    } catch (\PDOException $ex) {
+        throw $ex;
+      }
+  }
+
 }
 
 ?>
