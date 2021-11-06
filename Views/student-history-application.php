@@ -1,3 +1,20 @@
+<?php
+
+use DAO\jobPositionDAO as jobPositionDAO;
+use DAO\jobApplicationDAO as jobApplicationDAO;
+use DAO\jobOfferDAO as jobOfferDAO;
+use Models\JobPosition as JobPosition;
+
+$jobOfferDAO = new jobOfferDAO();
+$jobPositionDao = new jobPositionDAO();
+$jobApplicationDAO = new jobApplicationDAO();
+$jobOfferList = $jobOfferDAO->getAllJobOfferbyName();
+$jobApplicationList = $jobApplicationDAO->getAllJoApplicationHisotory();
+$jobPositionList = $jobPositionDao->getAllJobPosition()
+
+
+
+?>
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container-fluid">
@@ -8,33 +25,40 @@
                     <th>Job Position</th>
                     <th>description</th>
                     <th>active</th>
-                    <th>Application</th>
+                    <th>UnApply</th>
 
                 </thead>
                 <tbody>
                     <?php
+    var_dump($jobPosition->getActive();
 
 
 
-                    foreach ($jobApplicationList as $jobApplication) {
+                    foreach ($jobOfferList as $jobOffer) {
+
+                        foreach ($jobPositionList as $jobPosition) {
+                            if ($jobOffer->getJobPositionId() == $jobPosition->getJobPositionId()) {
+
                     ?>
-                        <td><?php echo $jobApplication->getJobApplicationId(); ?></td>
-                        <td><?php echo $jobApplication->getCompanyId(); ?></td>
-                        <td><?php echo $jobApplication->getStudentId(); ?></td>
-                        <td><?php echo $jobApplication->getActive(); ?></td>
+                                <td><?php echo $jobOffer->getCompanyName(); ?></td>
+                                <td><?php echo $jobPosition->getDescription(); ?></td>
+                                <td><?php echo $jobOffer->getDescriptionJobOffer(); ?></td>
+                                <td><?php echo $jobPosition->getActive(); ?></td>
 
-                        <td>
+                                <td>
 
-                            <button type="submit" name="btnChange" class="btn btn-danger">
-                                <a href="<?php if (isset($jobOffer)) {
-                                                echo FRONT_ROOT . "JobOffer/changeJobOfferInactiveById/" . $jobOffer->getJobOfferId();
-                                            }; ?>">unapply</a>
-                            </button>
-                        </td>
-                        </tr>
+                                    <button type="submit" name="btnChange" class="btn btn-danger">
+                                        <a href="<?php if (isset($jobOffer)) {
+                                                        echo FRONT_ROOT . "JobOffer/changeJobOfferInactiveById/" . $jobOffer->getJobOfferId();
+                                                    }; ?>">unapply</a>
+                                    </button>
+                                </td>
+                                </tr>
                     <?php
-
+                            }
+                        }
                     }
+
                     ?>
                 </tbody>
 
