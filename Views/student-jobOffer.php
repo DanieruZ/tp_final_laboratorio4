@@ -21,7 +21,7 @@ $jobPositionList = $jobPositionDao->getAllJobPosition()
                 </thead>
                 <tbody>
                     <?php
-                    $jobPosition = 0;
+                 
 
                     foreach ($jobOfferList as $jobOffer) {
 
