@@ -105,17 +105,33 @@ class CompanyDAO implements ICompanyDAO
     return $companyId;
   }
 
-  public function getCompanyByName($companyName)
-  {
-    $this->retrieveData();
-    $targetCompany = null;
+ // public function getCompanyByName($companyName)
+  //{
+   // $this->retrieveData();
+  //  $targetCompany = null;
 
-    foreach ($this->companyList as $company) {
-      if ($company->getCompanyName() == $companyName) {
-        $targetCompany == $companyName;
-      }
-    }
-    return $companyName;
+   // foreach ($this->companyList as $company) {
+    //  if ($company->getCompanyName() == $companyName) {
+    //    $targetCompany == $companyName;
+    //  }
+  //  }
+  //  return $companyName;
+//  }
+
+
+// Buscamos si existe el nombre de la compania antes de agregarlo
+  public function getCompanyByName($companyName)
+  {    
+      $TargetCompany = null;
+      $this->companyList = $this->getAllCompany();     
+      if ($this->companyList != null) {
+          foreach ($this->companyList as $company) {
+              if ($company->getCompanyName() == $companyName) {               
+                  $TargetCompany = $company;
+              }
+          }
+      }      
+      return $TargetCompany;
   }
 
 //
