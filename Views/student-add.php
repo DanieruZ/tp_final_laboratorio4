@@ -4,7 +4,14 @@
 			<h2 class="mb-4">Add Student</h2>
 			<form action="<?php echo FRONT_ROOT ?>Student/AddStudent" method="post" class="bg-light p-5">
 					<div class="col-lg-4">
-						<div class="form-group">
+					<h2 style="color: black">
+                                   <?php
+                                   if (isset($registedEmail)) {
+                                        echo "EMAIL ya esta";
+                                   }                                   
+                                   ?>
+                              </h2>
+						<div class="form-group">					
 							<label for="careerId">Career</label>												
 							<select name="careerId"  required class="form-control form-control-ml">
                                         <option style="color:grey" hidden selected>Carrer</option>
