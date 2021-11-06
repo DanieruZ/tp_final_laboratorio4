@@ -7,10 +7,9 @@ class JobApplication
 
   private $jobApplicationId;
   private $companyId;
-  private $studentId;
-  private $jobPositionId;
+  private $studentId;  
   private $jobOfferId;
-  private $adminId;
+  private $jobPositionId;
   private $active;
 
   public function __construct()

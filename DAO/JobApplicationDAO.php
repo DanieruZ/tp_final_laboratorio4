@@ -5,6 +5,8 @@ namespace DAO;
 use DAO\IJobApplicationDAO as IJobApplicationDAO;
 use Models\JobApplication as JobApplication;
 
+
+
 class JobApplicationDAO implements IJobApplicationDAO {
 
   private $jobApplicationList = array();
@@ -59,6 +61,7 @@ class JobApplicationDAO implements IJobApplicationDAO {
               $JobApplication->setJobApplicationId($row["jobApplicationId"]);
               $JobApplication->setStudentId($row["studentId"]);
               $JobApplication->setJobOfferId($row["jobOfferId"]);
+              $JobApplication->setJobPositionId($row["jobPositionId"]);
               $JobApplication->setActive($row["active"]);
 
              
@@ -92,5 +95,3 @@ class JobApplicationDAO implements IJobApplicationDAO {
   } 
 
 }
-
-?>
