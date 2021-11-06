@@ -11,6 +11,13 @@ require_once "nav-admin.php";
                <form action="<?php echo FRONT_ROOT ?>Company/AddCompany" method="post" class="bg-light p-5">
                     <div class="col">                         
                           <div class="col-lg-4">
+                          <h2 style="color: black">
+                                   <?php
+                                   if (isset($existCompanyName)) {
+                                        echo "company name already exists";
+                                   }                                   
+                                   ?>
+                              </h2>
                               <div class="form-group">
                                    <label for="companyName">companyName</label>
                                    <input type="text" name="companyName" value="" class="form-control" Required>
