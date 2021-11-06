@@ -46,6 +46,8 @@ class JobPositionDAO implements IJobPositionDAO {
 
               array_push($jobPositionList, $jobPosition);
           }
+
+         
           return $jobPositionList;
       } catch (\PDOException $ex) {
         throw $ex;
