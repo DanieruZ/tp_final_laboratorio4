@@ -54,6 +54,8 @@ class CompanyController {
             
   public function AddCompany($companyName, $email,$phoneNumber,$address,$city,$country, $totalEmployees, $companyInfo,$active) {  
     Utils::checkAdminSession();    
+    if($this->CompanyDAO->getCompanyByName($companyName) == null){
+          //die(var_dump($this->companyDAO->getCompanyByName($companyName))); 
     $companyId = $this->CompanyDAO->getNextId(); //genera el siguiente ID
     $company = new Company();   
     $company->setCompanyId($companyId);
@@ -68,7 +70,13 @@ class CompanyController {
     $company->setActive($active);   
     $this->CompanyDAO->addCompany($company);   
     $this->ShowAddView();
-  }
+    }
+    else{     
+      $existCompanyName = true;
+      require_once(VIEWS_PATH . "company-add.php");
+    }
+  } 
+   
        
   public function DeleteCompany($companyId){
     $this->CompanyDAO->deleteCompanyById($companyId);

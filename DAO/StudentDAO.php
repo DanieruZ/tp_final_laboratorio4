@@ -124,17 +124,32 @@ class StudentDAO implements IStudentDAO {
     }
 
 
-  public function getStudentByEmail($email) {
-    $this->retrieveData();
-    $targetStudent = null;
+  //public function getStudentByEmail($email) {
+   // $this->retrieveData();
+   // $targetStudent = null;
     
-    foreach($this->studentList as $student) {
-      if($student->getEmail() == $email) {
-        $targetStudent = $student;
-      }
-    }
-    return $targetStudent;
-  }
+   // foreach($this->studentList as $student) {
+     // if($student->getEmail() == $email) {
+     //   $targetStudent = $student;
+     // }
+   // }
+    //return $targetStudent;
+ // }
+ 
+// Comprueba que no existe el email en la bD
+  public function getStudentByEmail($email){
+    $targetStudent = NULL;
+    $students = $this->getAllStudent();
+
+    foreach($students as $student){
+        if($student->getEmail() == $email){
+            $targetStudent = $student;
+        }
+    }   
+       return $targetStudent;
+}
+
+
 
   /**
    * 

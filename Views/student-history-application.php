@@ -30,10 +30,6 @@ $jobPositionList = $jobPositionDao->getAllJobPosition()
                 </thead>
                 <tbody>
                     <?php
-    var_dump($jobPosition->getActive();
-
-
-
                     foreach ($jobOfferList as $jobOffer) {
 
                         foreach ($jobPositionList as $jobPosition) {

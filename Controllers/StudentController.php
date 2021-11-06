@@ -17,7 +17,6 @@ class StudentController
   {
     $this->studentDAO = new StudentDAO();
     $this->CareerDAO = new CareerDAO();
-
   }
 
   public function ShowStudentWelcomeView($student)
@@ -51,23 +50,33 @@ class StudentController
     require_once(VIEWS_PATH . "student-list.php");
   }
 
+
   public function AddStudent($careerId, $firstName, $lastName, $dni, $fileNumber, $gender, $birthDate, $email, $phoneNumber, $active)
   {
-    Utils::checkAdminSession();
-    $studentId = $this->studentDAO->getNextId();
+    Utils::checkAdminSession();    
     $student = new Student();
-    $student->setCareerId($careerId);
-    $student->setFirstName($firstName);
-    $student->setLastName($lastName);
-    $student->setDni($dni);
-    $student->setFileNumber($fileNumber);
-    $student->setGender($gender);
-    $student->setBirthDate($birthDate);
-    $student->setEmail($email);
-    $student->setPhoneNumber($phoneNumber);
-    $student->setActive($active);
-    $this->studentDAO->addStudent($student);
-    $this->ShowAddView();
+    $student = $this->studentDAO->getStudentByEmail($email);   
+      if ($student == null) {            
+          $studentId = $this->studentDAO->getNextId();
+          $student = new Student();
+          $student->setCareerId($careerId);
+          $student->setFirstName($firstName);
+          $student->setLastName($lastName);
+          $student->setDni($dni);
+          $student->setFileNumber($fileNumber);
+          $student->setGender($gender);
+          $student->setBirthDate($birthDate);
+          $student->setEmail($email);
+          $student->setPhoneNumber($phoneNumber);
+          $student->setActive($active);
+          $this->studentDAO->addStudent($student);
+          $this->ShowAddView();       
+      }
+      else {
+        $registedEmail = true;
+        require_once(VIEWS_PATH . "nav-admin.php");
+        require_once(VIEWS_PATH . "student-add.php");
+    }
   }
 
   public function DeleteStudent($studentId)
@@ -76,6 +85,7 @@ class StudentController
     $this->studentDAO->deleteStudentById($studentId);
     $this->ShowStudentListAdminView();
   }
+ 
 
   public function Index()
   {
