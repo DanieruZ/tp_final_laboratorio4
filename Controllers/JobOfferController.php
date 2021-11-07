@@ -124,12 +124,10 @@ class JobOfferController
     if ($jobOffer->getActive() == 1) {        
       
        $studentId = ($_SESSION["student"]->getStudentId());
-       $this->JobOfferDAO->AddStudentApplication($jobOffer, $studentId);   
-      
+       $this->JobOfferDAO->AddStudentApplication($jobOffer, $studentId);    
 
     }
-  }
-    $SubscribeSuccess = true;
+  }    
     $this->ShowApplicationView();
   }
 
