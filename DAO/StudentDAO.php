@@ -27,8 +27,7 @@ class StudentDAO implements IStudentDAO {
       $parameters['birthDate'] = $student->getBirthDate();
       $parameters['email'] = $student->getEmail();
       $parameters['phoneNumber'] = $student->getPhoneNumber();
-      $parameters['active'] = $student->getActive();
-      
+      $parameters['active'] = $student->getActive();      
       $this->connection = Connection::GetInstance();
       return $this->connection->executeNonQuery($sql, $parameters);
 
