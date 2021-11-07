@@ -4,13 +4,16 @@ use DAO\jobPositionDAO as jobPositionDAO;
 use DAO\jobApplicationDAO as jobApplicationDAO;
 use DAO\jobOfferDAO as jobOfferDAO;
 use Models\JobPosition as JobPosition;
+use Models\JobApplication as JobApplication;
 
 $jobOfferDAO = new jobOfferDAO();
 $jobPositionDao = new jobPositionDAO();
 $jobApplicationDAO = new jobApplicationDAO();
 $jobOfferList = $jobOfferDAO->getAllJobOfferbyName();
-$jobApplicationList = $jobApplicationDAO->getAllJoApplicationHisotory();
-$jobPositionList = $jobPositionDao->getAllJobPosition()
+$jobApplicationList = $jobApplicationDAO->getJoApplicationByStudent();
+$jobPositionList = $jobPositionDao->getAllJobPosition();
+
+//die(var_dump($jobApplicationList));
 
 
 
@@ -21,41 +24,31 @@ $jobPositionList = $jobPositionDao->getAllJobPosition()
             <h2 class="mb-4">History Application</h2>
             <table class="table bg-light">
                 <thead class="bg-dark text-white">
+                    <th>jobOfferId</th>
                     <th>companyName</th>
-                    <th>Job Position</th>
                     <th>description</th>
-                    <th>active</th>
                     <th>UnApply</th>
 
                 </thead>
                 <tbody>
-                    <?php
-                    foreach ($jobOfferList as $jobOffer) {
 
-                        foreach ($jobPositionList as $jobPosition) {
-                            if ($jobOffer->getJobPositionId() == $jobPosition->getJobPositionId()) {
 
-                    ?>
-                                <td><?php echo $jobOffer->getCompanyName(); ?></td>
-                                <td><?php echo $jobPosition->getDescription(); ?></td>
-                                <td><?php echo $jobOffer->getDescriptionJobOffer(); ?></td>
-                                <td><?php echo $jobPosition->getActive(); ?></td>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label for="">Empresa</label>
+                            <input readonly name="companyName" class="form-control form-control-ml" value=" <?php echo $jobAp->getCompany_name(); ?>">
+                        </div>
+                        <tr>
+                            <td>
 
-                                <td>
+                                <button type="submit" name="btnChange" class="btn btn-danger">
+                                    <a href="<?php if (isset($jobOffer)) {
+                                                    echo FRONT_ROOT . "JobOffer/changeJobOfferActiveById/" . $jobOffer->getJobOfferId();
+                                                }; ?>">unapply</a>
+                                </button>
+                            </td>
+                        </tr>
 
-                                    <button type="submit" name="btnChange" class="btn btn-danger">
-                                        <a href="<?php if (isset($jobOffer)) {
-                                                        echo FRONT_ROOT . "JobOffer/changeJobOfferInactiveById/" . $jobOffer->getJobOfferId();
-                                                    }; ?>">unapply</a>
-                                    </button>
-                                </td>
-                                </tr>
-                    <?php
-                            }
-                        }
-                    }
-
-                    ?>
                 </tbody>
 
             </table>

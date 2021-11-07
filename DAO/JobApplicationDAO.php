@@ -76,6 +76,40 @@ class JobApplicationDAO implements IJobApplicationDAO {
       }
   }
 
+  public function getJoApplicationByStudent()
+  {
+      try {
+          $jobApplicationList = array();
+         
+
+          $sql = "SELECT * FROM jobapplication ja
+                  INNER JOIN student st on st.studentId = ja.studentId";   
+            
+
+          $this->connection = Connection::GetInstance();
+
+          $toJobApplication = $this->connection->Execute($sql);
+
+          foreach ($toJobApplication as $row) {
+              $JobApplication = new JobApplication();
+              $JobApplication->setJobApplicationId($row["jobApplicationId"]);
+              $JobApplication->setStudentId($row["studentId"]);
+              $JobApplication->setJobOfferId($row["jobOfferId"]);
+              $JobApplication->setJobPositionId($row["jobPositionId"]);
+              $JobApplication->setActive($row["active"]);
+
+             
+
+              array_push($jobApplicationList, $JobApplication);
+
+           }
+          // die(var_dump($jobApplicationList));
+          return $jobApplicationList;
+      } catch (\PDOException $ex) {
+        throw $ex;
+      }
+  }
+
   private function saveData() {
     $arrayToEncode = array();
 

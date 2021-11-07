@@ -6,7 +6,7 @@ class JobApplication
 {
 
   private $jobApplicationId;
-  private $companyId;
+  //private $companyId;
   private $studentId;  
   private $jobOfferId;
   private $jobPositionId;

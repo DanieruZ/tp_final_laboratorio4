@@ -13,7 +13,8 @@ use DAO\JobApplicationDAO as JobApplicationDAO;
 
 class JobOfferController
 {
-  private $student;
+
+  // private $jobOffer;
   private $JobOfferDAO;
   private $CompanyDAO;
   private $JobPositionDAO;
@@ -23,10 +24,10 @@ class JobOfferController
   public function __construct()
   {
     $this->JobOfferDAO = new JobOfferDAO();
-    $this->CompanyDAO = new CompanyDAO;
-    $this->JobPositionDAO = new JobPositionDAO;
-    $this->JobApplicationDAO = new JobApplicationDAO;
-    $this->StudentDAO = new StudentDAO;
+    $this->CompanyDAO = new CompanyDAO();
+    $this->JobPositionDAO = new JobPositionDAO();
+    $this->JobApplicationDAO = new JobApplicationDAO();
+    $this->StudentDAO = new StudentDAO();
   }
 
   public function ShowJobOfferListAdminView()
@@ -113,19 +114,24 @@ class JobOfferController
 
   public function Application($jobOfferId)
   {
-    
     Utils::checkStudentSession();
-    $jobOffer= $this->JobOfferDAO->getJobOffer($jobOfferId);
+    $jobApplicationChecked = $this->JobApplicationDAO->getJoApplicationByStudent();
 
-      //die(var_dump($jobOffer));
-       //if ($jobOffer2->getActive() == 0) {
-     // $studentId = $this->student->getStudentId();
-     // $this->jobOfferDAO->AddStudentApplication($jobOffer, $studentId);
+      if($jobApplicationChecked == null){
 
-   
+    $studentId = ($_SESSION["student"]->getStudentId());    
+    $jobOffer = $this->JobOfferDAO->getJobOfferByApplication($jobOfferId);
+    if ($jobOffer->getActive() == 1) {        
+      
+       $studentId = ($_SESSION["student"]->getStudentId());
+       $this->JobOfferDAO->AddStudentApplication($jobOffer, $studentId);    
 
-    //$jobOffer = $this->jobOfferDAO->GetJobOffer($jobOfferId);
-   // $student = $this->studentDAO->GetByStudentId($studentId);
+    }
+  }    
     $this->ShowApplicationView();
   }
+
+  
+
+ 
 }
