@@ -133,35 +133,7 @@ class JobOfferController
     $this->ShowApplicationView();
   }
 
-  public function Subscribe($jobOfferId)
-  {
-      $user = $_SESSION['student'];
-      $jobApplicationList = $this->JobApplicationDAO->getJoApplicationByStudent();
-
-      var_dump($jobApplicationList);
-
-      if ($user->getJobOfferId() == null) {
-
-          $jobOffer = $this->jobOfferDAO->GetJobOffer($jobOfferId);
-          if ($jobOffer->getState() == "Opened") {
-              $studentId = $user->getStudentId();
-              $this->jobOfferDAO->AddStudent($jobOffer, $studentId);
-              $this->userDAO->Update($user, $jobOfferId);
-              $user->setJobOfferId($jobOfferId);
-              $_SESSION['student'] = $user;
-              $SubscribeSuccess = true;
-          } else {
-              $closedOffer = true;
-          }
-      } else {
-          $SubscribeError = true;
-      }
-
-      $jobOffer = $this->jobOfferDAO->GetJobOffer($jobOfferId);
-      $student = $this->studentDAO->GetByStudentId($user->getStudentId());
-      require_once(VIEWS_PATH . "student-jobOffer-show.php");
-  }
-
+  
 
  
 }
