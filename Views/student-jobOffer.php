@@ -14,12 +14,15 @@ $jobPositionList = $jobPositionDao->getAllJobPosition()
                 <thead class="bg-dark text-white">
                     <th>companyName</th>
                     <th>Job Position</th>
-                    <th>description</th>
-                    <th>active</th>
+                    <th>description</th>                   
                     <th>Application</th>
 
                 </thead>
                 <tbody>
+
+                <h4 style="color: black">
+                    
+                </h4>
                     <?php
                  
 
@@ -31,14 +34,15 @@ $jobPositionList = $jobPositionDao->getAllJobPosition()
                                 <tr>
                                     <td><?php echo $jobOffer->getCompanyName(); ?></td>
                                     <td><?php echo $jobPosition->getDescription(); ?></td>
-                                    <td><?php echo $jobOffer->getDescriptionJobOffer(); ?></td>
-                                    <td><?php echo $jobOffer->getActive(); ?></td>
+                                    <td><?php echo $jobOffer->getDescriptionJobOffer(); ?></td>                               
 
+
+                                    
+                                    
                                     <td>
-                                        <button type="submit" name="btnChange" class="btn btn-danger">
-                                            <a href="<?php if (isset($jobOffer)) {
-                                                            echo FRONT_ROOT . "JobOffer/Application/" . $jobOffer->getJobOfferId();
-                                                        }; ?>">Applicate</a>
+                                        <button type="submit" name="btn" class="btn btn-danger">
+                                            
+                                            <a href="<?php if (isset($jobOffer)) {echo FRONT_ROOT . "JobOffer/Application/" . $jobOffer->getJobOfferId();}; ?>">Applicate</a>
                                         </button>
                                     </td>
                                 </tr>
