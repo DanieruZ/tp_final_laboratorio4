@@ -28,11 +28,11 @@ class AdminController {
     require_once(VIEWS_PATH."admin-add.php");
   }
 
-
   
   public function AddAdmin($firstName, $lastName, $dni, $email, $active) {  
     Utils::checkAdminSession();    
     $adminId = $this->adminDAO->getNextId(); //genera el siguiente ID
+
     $admin = new Admin();   
     $admin->setAdminId($adminId);
     $admin->setFirstName($firstName);
