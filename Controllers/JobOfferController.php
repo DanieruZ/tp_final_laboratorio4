@@ -120,6 +120,8 @@ class JobOfferController
     Utils::checkStudentSession();
     $jobApplicationChecked = $this->JobApplicationDAO->getJoApplicationByStudent();
 
+    die(var_dump($jobApplicationChecked));
+
       if($jobApplicationChecked == null){
 
     $studentId = ($_SESSION["student"]->getStudentId());    
