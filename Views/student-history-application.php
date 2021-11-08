@@ -5,7 +5,11 @@ use DAO\jobApplicationDAO as jobApplicationDAO;
 use DAO\jobOfferDAO as jobOfferDAO;
 use Models\JobPosition as JobPosition;
 use Models\JobApplication as JobApplication;
+use Models\JobOffer as JobOffer;
 
+
+$jobOffer = new jobOffer();
+$JobApplication = new JobApplication();
 $jobOfferDAO = new jobOfferDAO();
 $jobPositionDao = new jobPositionDAO();
 $jobApplicationDAO = new jobApplicationDAO();
@@ -24,10 +28,9 @@ $jobPositionList = $jobPositionDao->getAllJobPosition();
             <h2 class="mb-4">History Application</h2>
             <table class="table bg-light">
                 <thead class="bg-dark text-white">
-                    <th>jobOfferId</th>
                     <th>companyName</th>
+                    <th>Position</th>
                     <th>description</th>
-                    <th>UnApply</th>
 
                 </thead>
                 <tbody>
@@ -36,25 +39,22 @@ $jobPositionList = $jobPositionDao->getAllJobPosition();
 
                     foreach ($jobOfferList as $jobOffer) {
 
-                        foreach ($jobOfferList as $jobApplication) {
-                            if($jobOffer->getStudentId() == $jobApplication->getStudentId()){                        
-                    ?>
-                                <tr>
-                                    <td><?php echo $jobOffer->getCompanyName(); ?></td>
-                                   
+                        foreach ($jobApplicationList as $jobApplication) {
+                            foreach ($jobPositionList as $jobPosition) {
+                                if ($jobOffer->getStudentId() == $jobApplication->getStudentId()) {
+                                    if ($jobPosition->getJobPositionId() == $jobApplication->getJobPositionId()) {
 
-                                    <td>
-                                        <button type="submit" name="btnChange" class="btn btn-danger">
-                                            <a href="<?php if (isset($jobOffer)) {
-                                                            echo FRONT_ROOT . "JobOffer/changeJobOfferActiveById/" . $jobOffer->getJobOfferId();
-                                                        }; ?>">unapply</a>
-                                        </button>
-                                    </td>
-                                </tr>
+                    ?>
+                                        <tr>
+                                            <td><?php echo $jobOffer->getCompanyName(); ?></td>
+                                            <td><?php echo $jobPosition->getDescription(); ?></td>
+                                            <td><?php echo $jobOffer->getDescriptionJobOffer(); ?></td>
+                                        </tr>
                     <?php
-                        }   
-                    }
-                       
+                                    }
+                                }
+                            }
+                        }
                     }
                     ?>
                 </tbody>
