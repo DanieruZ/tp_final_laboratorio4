@@ -31,24 +31,32 @@ $jobPositionList = $jobPositionDao->getAllJobPosition();
 
                 </thead>
                 <tbody>
+                    <?php
 
 
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <label for="">Empresa</label>
-                            <input readonly name="companyName" class="form-control form-control-ml" value=" <?php echo $jobAp->getCompany_name(); ?>">
-                        </div>
-                        <tr>
-                            <td>
+                    foreach ($jobOfferList as $jobOffer) {
 
-                                <button type="submit" name="btnChange" class="btn btn-danger">
-                                    <a href="<?php if (isset($jobOffer)) {
-                                                    echo FRONT_ROOT . "JobOffer/changeJobOfferActiveById/" . $jobOffer->getJobOfferId();
-                                                }; ?>">unapply</a>
-                                </button>
-                            </td>
-                        </tr>
+                        foreach ($jobOfferList as $jobApplication) {
+                            if($jobOffer->getStudentId() == $jobApplication->getStudentId()){                        
+                    ?>
+                                <tr>
+                                    <td><?php echo $jobOffer->getCompanyName(); ?></td>
+                                   
 
+                                    <td>
+                                        <button type="submit" name="btnChange" class="btn btn-danger">
+                                            <a href="<?php if (isset($jobOffer)) {
+                                                            echo FRONT_ROOT . "JobOffer/changeJobOfferActiveById/" . $jobOffer->getJobOfferId();
+                                                        }; ?>">unapply</a>
+                                        </button>
+                                    </td>
+                                </tr>
+                    <?php
+                        }   
+                    }
+                       
+                    }
+                    ?>
                 </tbody>
 
             </table>
