@@ -5,6 +5,7 @@ namespace DAO;
 use DAO\IJobOfferDAO as IJobOfferDAO;
 use DAO\CompanyDAO as CompanyDAO;
 use Models\JobOffer as JobOffer;
+use Models\Student as Student;
 use DAO\Connection as Connection;
 
 class JobOfferDAO implements IJobOfferDAO
@@ -120,6 +121,35 @@ class JobOfferDAO implements IJobOfferDAO
         $jobOffer->setCompanyId($row["companyId"]);
         $jobOffer->setCompanyName($row["companyName"]);
         $jobOffer->setJobPositionId($row["jobPositionId"]);
+        $jobOffer->setDescriptionJobOffer($row["descriptionJobOffer"]);
+        $jobOffer->setActive($row["active"]);
+
+        array_push($jobOfferList, $jobOffer);
+      }
+      return $jobOfferList;
+
+    } catch (\PDOException $ex) {
+        throw $ex;
+      }
+  }
+
+
+  public function getAllJobOfferbyStudent($studentId) {
+    try {
+      $jobOfferList = array();
+
+      $sql = "SELECT * FROM joboffer WHERE studentId = :studentId;";
+
+      $this->connection = Connection::GetInstance();
+      $toJobOffer = $this->connection->Execute($sql);
+
+      foreach ($toJobOffer as $row) {
+        $jobOffer = new JobOffer();
+        $jobOffer->setJobOfferId($row["jobOfferId"]);
+        $jobOffer->setCompanyId($row["companyId"]);
+        $jobOffer->setCompanyName($row["companyName"]);
+        $jobOffer->setJobPositionId($row["jobPositionId"]);
+        $jobOffer->setStudentId($row["studentId"]);
         $jobOffer->setDescriptionJobOffer($row["descriptionJobOffer"]);
         $jobOffer->setActive($row["active"]);
 
