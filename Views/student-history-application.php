@@ -34,9 +34,8 @@ $jobPositionList = $jobPositionDao->getAllJobPosition();
 
 
                     <div class="row">
-                        <div class="col-lg-4">
-                            <label for="">Empresa</label>
-                            <input readonly name="companyName" class="form-control form-control-ml" value=" <?php echo $jobAp->getCompany_name(); ?>">
+                        <div class="col-lg-4">                            
+                            <input readonly name="companyName" class="form-control form-control-ml" value=" <?php echo $jobOffer->getCompanyName(); ?>">
                         </div>
                         <tr>
                             <td>
