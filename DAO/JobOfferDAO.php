@@ -105,6 +105,34 @@ class JobOfferDAO implements IJobOfferDAO
   }
 
 
+  public function getAllJobOfferbyActive() {
+    try {
+      $jobOfferList = array();
+
+      $sql = "SELECT * FROM joboffer WHERE active = 1;";
+
+      $this->connection = Connection::GetInstance();
+      $toJobOffer = $this->connection->Execute($sql);
+
+      foreach ($toJobOffer as $row) {
+        $jobOffer = new JobOffer();
+        $jobOffer->setJobOfferId($row["jobOfferId"]);
+        $jobOffer->setCompanyId($row["companyId"]);
+        $jobOffer->setCompanyName($row["companyName"]);
+        $jobOffer->setJobPositionId($row["jobPositionId"]);
+        $jobOffer->setDescriptionJobOffer($row["descriptionJobOffer"]);
+        $jobOffer->setActive($row["active"]);
+
+        array_push($jobOfferList, $jobOffer);
+      }
+      return $jobOfferList;
+
+    } catch (\PDOException $ex) {
+        throw $ex;
+      }
+  }
+
+
   public function deleteJobOfferById($jobOfferId)
   {
     try {
@@ -303,3 +331,5 @@ class JobOfferDAO implements IJobOfferDAO
     }
   }
 }
+
+?>

@@ -52,11 +52,10 @@ class JobOfferController
     require_once(VIEWS_PATH . "jobOffer-add.php");
   }
 
-  public function ShowApplicationView()
-  {
-    require_once(VIEWS_PATH . "nav-student.php");
-    $jobOfferList = $this->JobOfferDAO->getAllJobOfferbyName();
+  public function ShowApplicationView() {
+    $jobOfferList = $this->JobOfferDAO->getAllJobOfferbyActive();
     $jobPositionList = $this->JobPositionDAO->getAllJobPositionByName();
+    require_once(VIEWS_PATH . "nav-student.php");
     require_once(VIEWS_PATH . "student-jobOffer.php");
   }
 
