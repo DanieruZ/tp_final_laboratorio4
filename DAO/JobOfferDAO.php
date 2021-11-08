@@ -83,7 +83,7 @@ class JobOfferDAO implements IJobOfferDAO
     try {
       $jobOfferList = array();
 
-      $sql = "SELECT * FROM " . $this->tableName;
+      $sql = "SELECT * FROM joboffer " ;
 
       $this->connection = Connection::GetInstance();
       $toJobOffer = $this->connection->Execute($sql);
@@ -94,6 +94,8 @@ class JobOfferDAO implements IJobOfferDAO
         $jobOffer->setCompanyId($row["companyId"]);
         $jobOffer->setCompanyName($row["companyName"]);
         $jobOffer->setJobPositionId($row["jobPositionId"]);
+        $jobOffer->setStudentId($row["studentId"]);
+        $jobOffer->setAdminId($row["adminId"]);
         $jobOffer->setDescriptionJobOffer($row["descriptionJobOffer"]);
         $jobOffer->setActive($row["active"]);
 
