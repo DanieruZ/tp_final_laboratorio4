@@ -134,7 +134,7 @@ class JobOfferDAO implements IJobOfferDAO
   }
 
 
-  public function getAllJobOfferbyStudent($studentId) {
+  public function getAllJobOfferbyStudentId($studentId) {
     try {
       $jobOfferList = array();
 

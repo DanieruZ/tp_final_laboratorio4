@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-use Utils\Utils as Utils;
 use DAO\JobOfferDAO as JobOfferDAO;
 use DAO\CompanyDAO as CompanyDAO;
 use Models\JobOffer as JobOffer;
@@ -10,6 +9,7 @@ use Models\Student as Student;
 use DAO\StudentDAO as StudentDAO;
 use DAO\JobPositionDAO as JobPositionDAO;
 use DAO\JobApplicationDAO as JobApplicationDAO;
+use Utils\Utils as Utils;
 
 class JobOfferController
 {
@@ -30,17 +30,15 @@ class JobOfferController
     $this->StudentDAO = new StudentDAO();
   }
 
-  public function ShowJobOfferListAdminView()
-  {
-    require_once(VIEWS_PATH . "nav-admin.php");
+  public function ShowJobOfferListAdminView() {
     $jobOfferList = $this->JobOfferDAO->getAllJobOffer();
+    require_once(VIEWS_PATH . "nav-admin.php");
     require_once(VIEWS_PATH . "joboffer-list-admin.php");
   }
 
-  public function ShowJobOfferListStudentView()
-  {
+  public function ShowJobOfferListStudentView() {
+    $jobOfferList = $this->JobOfferDAO->getAllJobOfferbyActive();
     require_once(VIEWS_PATH . "nav-student.php");
-    $jobOfferList = $this->JobOfferDAO->getAllJobOffer();
     require_once(VIEWS_PATH . "joboffer-list-student.php");
   }
 
@@ -59,12 +57,18 @@ class JobOfferController
     require_once(VIEWS_PATH . "student-jobOffer.php");
   }
 
-  public function ShowHistoryApplicationView()
-  {
-    require_once(VIEWS_PATH . "nav-student.php");
+  public function ShowHistoryApplicationView() {
+    Utils::checkStudentSession();
     $jobOfferList = $this->JobOfferDAO->getAllJobOfferbyName();
     $jobPositionList = $this->JobPositionDAO->getAllJobPositionByName();
     $jobApplicationList = $this->JobApplicationDAO->getAllJoApplicationHisotory();
+
+    // $studentId = ($_SESSION["student"]->getStudentId());  
+    // // die(var_dump($studentId));
+    // $studentJobList = $this->JobOfferDAO->getAllJobOfferbyStudentId($studentId);
+    
+
+    require_once(VIEWS_PATH . "nav-student.php");
     require_once(VIEWS_PATH . "student-history-application.php");
   }
 
