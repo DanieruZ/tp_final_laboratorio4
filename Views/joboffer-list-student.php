@@ -1,27 +1,10 @@
 <main class="py-5">
     <section id="listado" class="mb-5">
-        <div class="container">
-            <h2 class="mb-4">Job Offer List</h2>
-            <div class="row">
-                <form action="<?php echo FRONT_ROOT ?>JobOffer/ShowJobOfferListAdminView" method="GET">
-                    <label for="">Career </label>
-                    <select name="careerId" class="form-control form-control-ml">
-                        <?php
-                        echo "<option value=" . 0 . ">Todas</option>";
-                        if (isset($careers)) {
-                            foreach ($careers as $career) {
-                                echo "<option value=" . $career->getCareerId() . ">" . $career->getDescription() . "</option>";
-                            }
-                        }
-                        ?>
-                    </select>
-                    <button type="submit" name="filter-button" class="btn btn-dark ml-auto d-block">Filtrar</button>
-                </form>
-            </div>
-
-            <table class="table bg-dark-alpha">
-                <thead>
-                    
+        <div class="container-fluid">
+            <h2 class="mb-4">JobOffer's List</h2>
+            <table class="table bg-light">
+                <thead class="bg-dark text-white">
+                    <th>jobOfferId</th>
                     <th>companyId</th>
                     <th>companyName</th>
                     <th>jobPositionId</th>
@@ -29,27 +12,37 @@
                     <th>description</th>
                     <th>adminId</th>
                     <th>active</th>
+                    <th>Change Status</th>                   
+
                 </thead>
                 <tbody>
                     <?php
-                    if (isset($jobOfferList)) {
+                   
                         foreach ($jobOfferList as $jobOffer) {
-                            echo  "<tr>";                          
-                            echo  "<td>" . $jobOffer->getCompanyId() . "</td>";
-                            echo  "<td>" . $jobOffer->getCompanyName() . "</td>";
-                            echo  "<td>" . $jobOffer->getJobPositionId() . "</td>";
-                            echo  "<td>" . $jobOffer->getStudentId() . "</td>";
-                            echo  "<td>" . $jobOffer->getAdminId() . "</td>";
-                            echo  "<td>" . $jobOffer->getDescription() . "</td>";
-                            echo  "<td>" . $jobOffer->getActive() . "</td>";
-                            $jobOfferId = $jobOffer->getJobOfferId();
-                            echo "<td><a href=" . FRONT_ROOT . "JobOffer/ShowOffer/" . $jobOfferId . ">+ ACTIVE</a></td>";
-                        }
-                    }
                     ?>
+                    <tr>
+                        <td><?php echo $jobOfferId = $jobOffer->getJobOfferId(); ?></td>
+                        <td><?php echo $jobOffer->getCompanyId(); ?></td>
+                        <td><?php echo $jobOffer->getCompanyName(); ?></td>
+                        <td><?php echo $jobOffer->getJobPositionId(); ?></td>
+                        <td><?php echo $jobOffer->getStudentId(); ?></td>
+                        <td><?php echo $jobOffer->getDescriptionJobOffer(); ?></td>
+                        <td><?php echo $jobOffer->getAdminId(); ?></td>                       
+                        <td><?php echo $jobOffer->getActive(); ?></td>                         
+                        <td>
+                            <button type="submit" name="btnChange" class="btn btn-danger">
+                                <a href="<?php if (isset($jobOffer)) {
+                                    echo FRONT_ROOT . "JobOffer/Applicate" . $jobOffer->getJobOfferId();}; ?>">JobApplication</a>
+                            </button>                            
+                        </td>
+                    </tr>
+                    <?php
+                        }
+                        ?>
                 </tbody>
 
             </table>
         </div>
+
     </section>
 </main>

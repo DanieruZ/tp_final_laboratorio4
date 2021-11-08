@@ -1,9 +1,8 @@
-<main class="py-5">
-	<section id="listado" class="mb-5">
+<main>
+	<section>
 		<div class="container">
-			<h2 class="mb-4">Add Admin</h2>
 			<form action="<?php echo FRONT_ROOT ?>Admin/AddAdmin" method="post" class="bg-light p-5">
-					
+				<h2 class="mb-4 p-1 bg-dark text-white">Add Admin</h2>
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label for="firstName">First Name</label>
@@ -34,9 +33,8 @@
 							<input type="text" name="active" class="form-control">
 						</div>
 					</div>
+					<button type="submit" name="" class="btn btn-dark ml-auto d-block float-left">Add</button>
 				</div>
-				<button type="submit" name="" class="btn btn-dark ml-auto d-block">Add</button>
-				
 			</form>
 		</div>
 	</section>
