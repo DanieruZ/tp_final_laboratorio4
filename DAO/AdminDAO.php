@@ -15,8 +15,8 @@ class AdminDAO implements IAdminDAO {
 
   public function addAdmin(Admin $admin) {
     try {
-      $sql = "INSERT INTO admin (firstName, lastName, dni, email, active) 
-              VALUES (:firstName, :lastName, :dni, :email, :active);";
+      $sql = "INSERT INTO `admin` (firstName, lastName, dni, email, active) 
+              VALUES ( :firstName, :lastName, :dni, :email, :active);";
 
       $parameters['firstName'] = $admin->getFirstName();
       $parameters['lastName'] = $admin->getLastName();
