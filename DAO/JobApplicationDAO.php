@@ -34,9 +34,7 @@ class JobApplicationDAO implements IJobApplicationDAO {
           $valuesArray["jobApplicationId"],
           $valuesArray["companyId"],
           $valuesArray["studentId"],
-          $valuesArray["jobPositionId"],
-          $valuesArray["adminId"],
-          $valuesArray["active"]
+          $valuesArray["jobPositionId"],       
         );
 
         array_push($this->jobApplicationList, $jobApplication);
@@ -48,8 +46,12 @@ class JobApplicationDAO implements IJobApplicationDAO {
   {
       try {
           $jobApplicationList = array();
+          $studentId = $_SESSION['student']->getStudentId();
 
-          $sql = "SELECT * FROM jobapplication ";   
+         // die(var_dump($studentId));
+          $sql = "SELECT * FROM studentxjoboffer st
+         WHERE st.id_student  = " . $studentId . ";";
+         
             
 
           $this->connection = Connection::GetInstance();
@@ -58,11 +60,10 @@ class JobApplicationDAO implements IJobApplicationDAO {
 
           foreach ($toJobApplication as $row) {
               $JobApplication = new JobApplication();
-              $JobApplication->setJobApplicationId($row["jobApplicationId"]);
-              $JobApplication->setStudentId($row["studentId"]);
-              $JobApplication->setJobOfferId($row["jobOfferId"]);
-              $JobApplication->setJobPositionId($row["jobPositionId"]);
-              $JobApplication->setActive($row["active"]);
+              $JobApplication->setJobApplicationId($row["id_studentXjobOffer"]);
+              $JobApplication->setStudentId($row["id_student"]);
+              $JobApplication->setJobOfferId($row["id_jobOffer"]);
+            
 
              
 
@@ -82,8 +83,8 @@ class JobApplicationDAO implements IJobApplicationDAO {
           $jobApplicationList = array();
          
 
-          $sql = "SELECT * FROM jobapplication ja
-                  INNER JOIN student st on st.studentId = ja.studentId";   
+          $sql = "SELECT * FROM studentxjoboffer ja
+                  INNER JOIN student st on st.studentId = ja.id_student";   
             
 
           $this->connection = Connection::GetInstance();
@@ -92,18 +93,14 @@ class JobApplicationDAO implements IJobApplicationDAO {
 
           foreach ($toJobApplication as $row) {
               $JobApplication = new JobApplication();
-              $JobApplication->setJobApplicationId($row["jobApplicationId"]);
-              $JobApplication->setStudentId($row["studentId"]);
-              $JobApplication->setJobOfferId($row["jobOfferId"]);
-              $JobApplication->setJobPositionId($row["jobPositionId"]);
-              $JobApplication->setActive($row["active"]);
-
-             
+              $JobApplication->setJobApplicationId($row["id_studentXjobOffer"]);
+              $JobApplication->setStudentId($row["id_student"]);
+              $JobApplication->setJobOfferId($row["id_jobOffer"]);       
 
               array_push($jobApplicationList, $JobApplication);
 
            }
-          // die(var_dump($jobApplicationList));
+          //die(var_dump($JobApplication));
           return $jobApplicationList;
       } catch (\PDOException $ex) {
         throw $ex;
