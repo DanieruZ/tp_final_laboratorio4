@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Utils\Utils as Utils;
 use DAO\JobOfferDAO as JobOfferDAO;
 use DAO\CompanyDAO as CompanyDAO;
 use Models\JobOffer as JobOffer;
@@ -9,7 +10,6 @@ use Models\Student as Student;
 use DAO\StudentDAO as StudentDAO;
 use DAO\JobPositionDAO as JobPositionDAO;
 use DAO\JobApplicationDAO as JobApplicationDAO;
-use Utils\Utils as Utils;
 
 class JobOfferController
 {
@@ -30,12 +30,12 @@ class JobOfferController
     $this->StudentDAO = new StudentDAO();
   }
 
+
   public function ShowJobOfferListAdminView() {
     Utils::checkAdminSession();
     $jobOfferList = $this->JobOfferDAO->getAllJobOffer();
-    require_once(VIEWS_PATH . "nav-admin.php");
-    require_once(VIEWS_PATH . "joboffer-list-admin.php");
-  }
+
+
 
   public function ShowJobOfferListApplicationAdminView() {
     Utils::checkAdminSession();
@@ -56,8 +56,8 @@ class JobOfferController
     $jobOfferList = $this->JobOfferDAO->getAllJobOfferbyActive();
     require_once(VIEWS_PATH . "nav-student.php");
     require_once(VIEWS_PATH . "student-jobOffer.php");
-  }
 
+  
   public function ShowAddJobOfferView() {
     Utils::checkAdminSession();
     $companyList = $this->CompanyDAO->getAllCompany();
@@ -66,13 +66,14 @@ class JobOfferController
     require_once(VIEWS_PATH . "jobOffer-add.php");
   }
 
+
   public function ShowApplicationView() {
     Utils::checkStudentSession();
     $jobOfferList = $this->JobOfferDAO->getAllJobOfferbyActive();
     $jobPositionList = $this->JobPositionDAO->getAllJobPositionByName();
-    require_once(VIEWS_PATH . "nav-student.php");
-    require_once(VIEWS_PATH . "student-jobOffer.php");
-  }
+
+  
+
 
   public function ShowHistoryApplicationView() {
     Utils::checkStudentSession();
@@ -80,8 +81,8 @@ class JobOfferController
     $jobPositionList = $this->JobPositionDAO->getAllJobPositionByName();
     $jobApplicationList = $this->JobApplicationDAO->getAllJoApplicationHisotory();
     require_once(VIEWS_PATH . "nav-student.php");
-    require_once(VIEWS_PATH . "student-history-application.php");
-  }
+
+ 
 
 
   public function AddJobOffer($companyId, $jobPositionId, $jobOffer_description, $limitDate) {
