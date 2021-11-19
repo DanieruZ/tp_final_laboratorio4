@@ -92,17 +92,48 @@ class CompanyDAO implements ICompanyDAO
   // return $this->companyList;
   // }
 
+ // public function getCompanyById($companyId)
+  //{
+   // $this->retrieveData();
+  //  $targetCompany = null;
+
+  //  foreach ($this->companyList as $company) {
+   //   if ($company->getCompanyId() == $companyId) {
+    //    $targetCompany == $companyId;
+     // }
+   // }
+   // return $companyId;
+ // }
+
   public function getCompanyById($companyId)
   {
-    $this->retrieveData();
-    $targetCompany = null;
+    //var_dump($companyId);
+    try {
+  
+      $sql = "SELECT * FROM company     
+      WHERE companyId  =  $companyId   ;";
 
-    foreach ($this->companyList as $company) {
-      if ($company->getCompanyId() == $companyId) {
-        $targetCompany == $companyId;
+      $this->connection = Connection::GetInstance();
+      $resultSet = $this->connection->Execute($sql);
+
+      foreach ($resultSet as $row) {
+        $company = new Company();
+        $company->setCompanyId($row["companyId"]);
+        $company->setCompanyName($row["companyName"]);
+        $company->setEmail($row["email"]);
+        $company->setPhoneNumber($row["phoneNumber"]);
+        $company->setAddress($row["address"]);
+        $company->setCity($row["city"]);
+        $company->setCountry($row["country"]);
+        $company->setTotalEmployees($row["totalEmployees"]);
+        $company->setCompanyInfo($row["companyInfo"]);
+        $company->setActive($row["active"]);
+       
       }
+      return $company;
+    } catch (\PDOException $ex) {
+      throw $ex;
     }
-    return $companyId;
   }
 
  // public function getCompanyByName($companyName)
@@ -162,15 +193,15 @@ class CompanyDAO implements ICompanyDAO
   }
 
 
-  public function updateCompany($companyId, $companyName, $email, $phoneNumber, $address, $city, $country, $totalEmployees, $companyInfo, $active)
+  public function updateCompany(Company $company)
   {
+   
     try {
 
-      $sql = "UPDATE  company SET companyName=:companyName, email=:email,
-        phoneNumber=:phoneNumber, address=:address, city=:city, country=:country, totalEmployees=:totalEmployees, companyInfo=:companyInfo, active=:active
+      $sql = "UPDATE company SET companyName=:companyName, email=:email,phoneNumber=:phoneNumber, address=:address, city=:city, country=:country, totalEmployees=:totalEmployees, companyInfo=:companyInfo, active=:active
         WHERE companyId = :companyId;";
 
-      $company = new Company;
+     
       $parameters["companyId"] = $company->getCompanyId();
       $parameters["companyName"] = $company->getCompanyName();
       $parameters["email"] = $company->getEmail();
@@ -181,6 +212,8 @@ class CompanyDAO implements ICompanyDAO
       $parameters["totalEmployees"] = $company->getTotalEmployees();
       $parameters["companyInfo"] = $company->getCompanyInfo();
       $parameters["active"] = $company->getActive();
+
+    
 
       $this->connection = Connection::GetInstance();
 

@@ -33,13 +33,7 @@
                                    <td><?php echo $company->getTotalEmployees(); ?></td>
                                    <td><?php echo $company->getCompanyInfo(); ?></td>
                                    <td><?php echo $company->getActive(); ?></td>
-                                   <td>
-                                        
-                                        <button type="submit" name="btnRemove"  class="btn btn-danger">
-                                        <a href= "">View Jobs</a>
-                                        </button>
-                                        
-                                   </td>
+                                  
                               </tr>
                          <?php
                          }

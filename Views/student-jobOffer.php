@@ -42,7 +42,7 @@ $jobPositionList = $jobPositionDao->getAllJobPosition()
                                     <td>
                                         <button type="submit" name="btn" class="btn btn-danger">
                                             
-                                            <a href="<?php if (isset($jobOffer)) {echo FRONT_ROOT . "JobOffer/Application/" . $jobOffer->getJobOfferId();}; ?>">Applicate</a>
+                                        <a href="<?php if (isset($jobOffer)) {echo FRONT_ROOT . "JobOffer/Application/" . $jobOffer->getJobOfferId();}; ?>">Applicate</a>
                                         </button>
                                     </td>
                                 </tr>

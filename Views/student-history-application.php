@@ -5,15 +5,19 @@ use DAO\jobApplicationDAO as jobApplicationDAO;
 use DAO\jobOfferDAO as jobOfferDAO;
 use Models\JobPosition as JobPosition;
 use Models\JobApplication as JobApplication;
+use Models\JobOffer as JobOffer;
 
+
+$jobOffer = new jobOffer();
+$JobApplication = new JobApplication();
 $jobOfferDAO = new jobOfferDAO();
 $jobPositionDao = new jobPositionDAO();
 $jobApplicationDAO = new jobApplicationDAO();
-$jobOfferList = $jobOfferDAO->getAllJobOfferbyName();
+$jobOfferList = $jobOfferDAO->getAllJobOffer();
 $jobApplicationList = $jobApplicationDAO->getJoApplicationByStudent();
 $jobPositionList = $jobPositionDao->getAllJobPosition();
 
-//die(var_dump($jobApplicationList));
+
 
 
 
@@ -23,11 +27,10 @@ $jobPositionList = $jobPositionDao->getAllJobPosition();
         <div class="container-fluid">
             <h2 class="mb-4">History Application</h2>
             <table class="table bg-light">
-                <thead class="bg-dark text-white">
-                    <th>jobOfferId</th>
-                    <th>companyName</th>
-                    <th>description</th>
-                    <th>UnApply</th>
+                <thead class="bg-primary text-white">
+                    <th>Company Name</th>
+                    <th>JobPosition</th>
+                    <th>Description</th>
 
                 </thead>
                 <tbody>
@@ -35,26 +38,24 @@ $jobPositionList = $jobPositionDao->getAllJobPosition();
 
 
                     foreach ($jobOfferList as $jobOffer) {
+                        foreach ($jobApplicationList as $jobApplication) {
+                            foreach ($jobPositionList as $jobPosition) {
+                                if ($_SESSION['student']->getStudentId() == $jobOffer->getStudent_id()) {
+                                    if ($jobOffer->getStudent_id() == $jobApplication->getStudentId()) {
+                                        if ($jobPosition->getJobPositionId() == $jobOffer->getJobPosition_id()) {
 
-                        foreach ($jobOfferList as $jobApplication) {
-                            if($jobOffer->getStudentId() == $jobApplication->getStudentId()){                        
                     ?>
-                                <tr>
-                                    <td><?php echo $jobOffer->getCompanyName(); ?></td>
-                                   
-
-                                    <td>
-                                        <button type="submit" name="btnChange" class="btn btn-danger">
-                                            <a href="<?php if (isset($jobOffer)) {
-                                                            echo FRONT_ROOT . "JobOffer/changeJobOfferActiveById/" . $jobOffer->getJobOfferId();
-                                                        }; ?>">unapply</a>
-                                        </button>
-                                    </td>
-                                </tr>
+                                            <tr>
+                                                <td><?php echo $jobOffer->getCompanyName(); ?></td>
+                                                <td><?php echo $jobPosition->getDescription(); ?></td>
+                                                <td><?php echo $jobOffer->getJobOffer_description(); ?></td>
+                                            </tr>
                     <?php
-                        }   
-                    }
-                       
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     ?>
                 </tbody>

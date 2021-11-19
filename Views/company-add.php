@@ -7,9 +7,10 @@ require_once "nav-admin.php";
 <main class="py-5">
      <section id="listado" class="mb-5">
           <div class="container">
-               <h2 class="mb-4">Add Company</h2>
+               
                <form action="<?php echo FRONT_ROOT ?>Company/AddCompany" method="post" class="bg-light p-5">
-                    <div class="col">                         
+                  <h2 class="mb-4 p-1 bg-primary text-white">Add Company</h2>
+               <div class="col">                         
                           <div class="col-lg-4">
                           <h2 style="color: black">
                                    <?php
@@ -19,31 +20,31 @@ require_once "nav-admin.php";
                                    ?>
                               </h2>
                               <div class="form-group">
-                                   <label for="companyName">companyName</label>
+                                   <label for="companyName">Name</label>
                                    <input type="text" name="companyName" value="" class="form-control" Required>
                               </div>
                          </div>
                          <div class="col-lg-4">
                               <div class="form-group">
-                                   <label for="email">email</label>
+                                   <label for="email">Email</label>
                                    <input type="email" name="email" value="" class="form-control" Required>
                               </div>
                          </div>
                          <div class="col-lg-4">
                               <div class="form-group">
-                                   <label for="phoneNumber">phoneNumber</label>
+                                   <label for="phoneNumber">PhoneNumber</label>
                                    <input type="text" name="phoneNumber" value="" class="form-control" Required>
                               </div>
                          </div>
                          <div class="col-lg-4">
                               <div class="form-group">
-                                   <label for="address">address</label>
+                                   <label for="address">Address</label>
                                    <input type="text" name="address" value="" class="form-control" Required>
                               </div>
                          </div>
                          <div class="col-lg-4">
                               <div class="form-group">
-                                   <label for="city">city</label>
+                                   <label for="city">City</label>
                                    <input type="text" name="city" value="" class="form-control" Required>
                               </div>
                          </div>
@@ -55,26 +56,26 @@ require_once "nav-admin.php";
                          </div>
                          <div class="col-lg-4">
                               <div class="form-group">
-                                   <label for="totalEmployees">totalEmployees</label>
+                                   <label for="totalEmployees">TotalEmployees</label>
                                    <input type="text" name="totalEmployees" value="" class="form-control" Required>
                               </div>
                          </div>
 
                          <div class="col-lg-4">
                               <div class="form-group">
-                                   <label for="companyInfo">companyInfo</label>
+                                   <label for="companyInfo">Description</label>
                                    <input type="text" name="companyInfo" value="" class="form-control" Required>
                               </div>
                          </div>
                          <div class="col-lg-4">
                               <div class="form-group">
-                                   <label for="active">active</label>
+                                   <label for="active">Active</label>
                                    <input type="text" name="active" value="" class="form-control" Required>
                               </div>
                          </div>
                     </div>
-                    <button type="submit" class="btn btn-dark ml-auto d-block">Add</button>
-                    <a href="<?php echo FRONT_ROOT ?>Admin">Back to Main</a>
+                    <button type="submit" class="btn btn-outline-primary ml-auto d-block float-left">Add</button>
+                    <a class="float-right" href="<?php echo FRONT_ROOT ?>Company/ShowCompanyListAdminView">Back to Main</a>
                </form>
           </div>
      </section>
